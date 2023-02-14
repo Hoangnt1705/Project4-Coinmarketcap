@@ -10,7 +10,7 @@ let App = (props) => {
           <nav className="bg-white bg-white-detail border-gray-200 py-2.5 dark:bg-gray-900">
             <div className="flex flex-wrap flex-wrap-detail items-center justify-between max-w-screen-xl px-4 mx-auto">
               <div className="flex items-center lg:order-2">
-                
+                <div>aaaaa</div>
                 <div>
                   <form id="app-cover">
                     <div id="select-box">
