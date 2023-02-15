@@ -3288,6 +3288,28 @@ input[type="radio"] {
   }
 }
 
+.dropdownTbl{
+  display: flex;
+}
+
+.dropdownTblTitle{
+  color: rgb(168, 167, 167);
+  margin-left: 15px;
+}
+
+.dropdownTblText{
+  margin: 0px;
+  font-weight: 700;
+}
+
+#NFT{
+  margin-top: 7px;
+}
+
+.dropdown-menu{
+  left: -50% !important;
+  
+}
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
