@@ -10,9 +10,9 @@ app.use(morgan());
 
 
 
-app.get('/', (req, res) => {
+app.get('/api/global-metrics/quotes/latest', (req, res) => {
     /* Example in Node.js */
-    axios.get('https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest', {
+    axios.get('https://pro-api.coinmarketcap.com/v1/global-metrics/quotes/latest', {
         headers: {
             'X-CMC_PRO_API_KEY': '6e341607-5728-40eb-a24b-a0c789a9b683',
         },
@@ -26,7 +26,7 @@ app.get('/', (req, res) => {
         .catch(err => console.log(err));
 })
 
-app.get('/api', (req, res) => {
+app.get('/api/cryptocurrency/listings/latest', (req, res) => {
     /* Example in Node.js */
     axios.get('https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest', {
         headers: {
