@@ -10,7 +10,23 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import Socket from './components/Socket';
 import SlideTbl from './components/SlideTbl';
 import PostComponent from './components/PostComponent';
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import LoginPage from './components/LoginPage';
+import Register from './components/Register';
+import { initializeApp } from "firebase/app";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 let App = () => {
+  const firebaseConfig = {
+    apiKey: "AIzaSyADD7SOk6lYqXZczh--7rydg7LR4Mj9OYM",
+    authDomain: "project-4-64893.firebaseapp.com",
+    projectId: "project-4-64893",
+    storageBucket: "project-4-64893.appspot.com",
+    messagingSenderId: "265891814289",
+    appId: "1:265891814289:web:15747ca5a313e1442ed830",
+    measurementId: "G-ND7TVZPFRN"
+  };
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth();
   const [dataLatest, setDataLatest] = useState('');
   const [cryptocurrencyListings, setCryptocurrencyListings] = useState([]);
 
@@ -127,12 +143,11 @@ let App = () => {
                   </div>
                 </div>
                 <div className="hidden mt-2 mr-4 sm:inline-block">
-                  <a href="https://themesberg.com/product/tailwind-css/landing-page" className="bg-transparent login-register hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded" style={{ borderRadius: "8px" }}>Login</a>
+                  <a className="bg-transparent login-register hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded" style={{ borderRadius: "8px" }}>Login</a>
                 </div>
                 <div className="hidden mt-2 mr-4 sm:inline-block">
-                  <a href="https://themesberg.com/product/tailwind-css/landing-page" className="text-white bg-purple-700 login-register hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 sm:mr-2 lg:mr-0 dark:bg-purple-600 dark:hover:bg-purple-700 focus:outline-none dark:focus:ring-purple-800">Sign up</a>
+                  <a className="text-white bg-purple-700 login-register hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 sm:mr-2 lg:mr-0 dark:bg-purple-600 dark:hover:bg-purple-700 focus:outline-none dark:focus:ring-purple-800">Sign up</a>
                 </div>
-
                 {/* <a href="#" className="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 sm:mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800">Log in</a> */}
                 <button data-collapse-toggle="mobile-menu-2" type="button" className="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200  dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="mobile-menu-2" aria-expanded="false">
                   <span className="sr-only">Open main menu</span>
@@ -434,7 +449,7 @@ let App = () => {
 
                         </NavDropdown.Item>
 
-                     `` </NavDropdown>
+                        `` </NavDropdown>
                     </Nav>
                     <Nav className="me-auto">
                       <NavDropdown title="Community" id="basic-nav-dropdown">
@@ -1062,6 +1077,15 @@ let App = () => {
           </div>
         </footer>
       </div >
+      <div>
+        <Link to="/login" id='login1'>Đăng nhập</Link>
+      </div>
+      <Router>
+        <Routes>
+          <Route path="/login" element={<LoginPage auth={auth} signInWithEmailAndPassword={signInWithEmailAndPassword} />} />
+          <Route path="/register" element={<Register auth={auth} createUserWithEmailAndPassword={createUserWithEmailAndPassword} />} />
+        </Routes>
+      </Router>
     </div >
   )
 
