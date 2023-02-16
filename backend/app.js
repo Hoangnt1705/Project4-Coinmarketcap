@@ -11,13 +11,6 @@ let requests = 0;
 const MAX_REQUESTS_PER_SECOND = 1;
 app.use(morgan());
 
-// app.get('/api/global-metrics/quotes/latest', (req, res) => {
-//     /* Example in Node.js */
-//     res.send("aaaa")
-
-// });
-
-
 
 io.on('connection', (socket) => {
     console.log('Client connected');

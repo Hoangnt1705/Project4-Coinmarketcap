@@ -8,6 +8,8 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Socket from './components/Socket';
+import SlideTbl from './components/SlideTbl';
+import PostComponent from './components/PostComponent';
 let App = () => {
   const [dataLatest, setDataLatest] = useState('');
   const [cryptocurrencyListings, setCryptocurrencyListings] = useState([]);
@@ -174,7 +176,7 @@ let App = () => {
                 </a>
               </div>
 
-              <Navbar bg="light" expand="lg">
+              <Navbar bg="light" id="bg-light" expand="lg">
                 <Container>
                   <Navbar.Toggle aria-controls="basic-navbar-nav" />
                   <Navbar.Collapse id="basic-navbar-nav">
@@ -184,58 +186,120 @@ let App = () => {
                           <div>
                             <h6 className='dropdownTblTitle'>CRYPTOCURRENCIES</h6>
                             <NavDropdown.Item href="#action/3.1">
-                              <p className='dropdownTblText'>Ranking</p>
+                              <div className='dropdownTblBlock'>
+                                <img src="https://s2.coinmarketcap.com/static/cloud/img/menu/MenuCmcIcon.svg" className='dropdownTblBlockImg' />
+                                <p className='dropdownTblText'>Ranking</p>
+                              </div>
                             </NavDropdown.Item>
                             <NavDropdown.Item href="#action/3.2">
-                              <p className='dropdownTblText'>Recently Added</p>
+                              <div className='dropdownTblBlock'>
+                                <img src="https://s2.coinmarketcap.com/static/cloud/img/menu/MenuRecentlyAddedIcon.svg" className='dropdownTblBlockImg' />
+                                <p className='dropdownTblText'>Recently Added</p>
+                              </div>
                             </NavDropdown.Item>
                             <NavDropdown.Item href="#action/3.3">
-                              <p className='dropdownTblText'>Categories</p>
+                              <div className='dropdownTblBlock'>
+                                <img src="https://s2.coinmarketcap.com/static/cloud/img/menu/MenuCategoriesIcon.svg" className='dropdownTblBlockImg' />
+                                <p className='dropdownTblText'>Categories</p>
+                              </div>
+
                             </NavDropdown.Item>
                             <NavDropdown.Item href="#action/3.3">
-                              <p className='dropdownTblText'>Spotlight</p>
+                              <div className='dropdownTblBlock'>
+                                <img src="https://s2.coinmarketcap.com/static/cloud/img/menu/MenuSpotlightIcon.svg" className='dropdownTblBlockImg' />
+                                <p className='dropdownTblText'>Spotlight</p>
+                              </div>
+
                             </NavDropdown.Item>
                             <NavDropdown.Item href="#action/3.3">
-                              <p className='dropdownTblText'>Gainers & Losers</p>
+                              <div className='dropdownTblBlock'>
+                                <img src="https://s2.coinmarketcap.com/static/cloud/img/menu/MenuGainersLosersIcon.svg" className='dropdownTblBlockImg' />
+                                <p className='dropdownTblText'>Gainers & Losers</p>
+                              </div>
+
                             </NavDropdown.Item>
                             <NavDropdown.Item href="#action/3.3">
-                              <p className='dropdownTblText'>Global Charts</p>
+                              <div className='dropdownTblBlock'>
+                                <img src="https://s2.coinmarketcap.com/static/cloud/img/menu/MenuGlobalChartsIcon.svg" className='dropdownTblBlockImg' />
+                                <p className='dropdownTblText'>Global Charts</p>
+                              </div>
+
                             </NavDropdown.Item>
                             <NavDropdown.Item href="#action/3.3">
-                              <p className='dropdownTblText'>Historical Snapshots</p>
+                              <div className='dropdownTblBlock'>
+                                <img src="https://s2.coinmarketcap.com/static/cloud/img/menu/MenuHistoryIcon.svg" className='dropdownTblBlockImg' />
+                                <p className='dropdownTblText'>Historical Snapshots</p>
+                              </div>
+
                             </NavDropdown.Item>
                             <NavDropdown.Divider />
                             <NavDropdown.Item href="#action/3.4">
-                              <p className='dropdownTblText'>Price Estimates</p>
+                              <div className='dropdownTblBlock'>
+                                <img src="https://s2.coinmarketcap.com/static/cloud/img/menu/MenuPriceEstimateIcon.svg" className='dropdownTblBlockImg' />
+                                <p className='dropdownTblText'>Price Estimates</p>
+                              </div>
+
                             </NavDropdown.Item>
                             <NavDropdown.Item href="#action/3.3">
-                              <p className='dropdownTblText'>Polkadot Parachains</p>
+                              <div className='dropdownTblBlock'>
+                                <img src="https://s2.coinmarketcap.com/static/cloud/img/menu/MenuPolkadotIcon.svg" className='dropdownTblBlockImg' />
+                                <p className='dropdownTblText'>Polkadot Parachains</p>
+                              </div>
+
                             </NavDropdown.Item>
                             <NavDropdown.Item href="#action/3.3">
-                              <p className='dropdownTblText'>Legal Tender Countries</p>
+                              <div className='dropdownTblBlock'>
+                                <img src="https://s2.coinmarketcap.com/static/cloud/img/menu/MenuLegalIcon.svg" className='dropdownTblBlockImg' />
+                                <p className='dropdownTblText'>Legal Tender Countries</p>
+                              </div>
+
                             </NavDropdown.Item>
                             <NavDropdown.Item href="#action/3.3">
-                              <p className='dropdownTblText'>Fiats/ Companies Ranking</p>
+                              <div className='dropdownTblBlock'>
+                                <img src="https://s2.coinmarketcap.com/static/cloud/img/menu/MenuFiatsIcon.svg" className='dropdownTblBlockImg' />
+                                <p className='dropdownTblText'>Fiats/ Companies Ranking</p>
+                              </div>
+
                             </NavDropdown.Item>
                           </div>
                           <div>
                             <h6 className='dropdownTblTitle' >NFT</h6>
                             <NavDropdown.Item href="#action/3.1">
-                              <p className='dropdownTblText'>Overall NFT Stats</p>
+                              <div className='dropdownTblBlock'>
+                                <img src="https://s2.coinmarketcap.com/static/cloud/img/menu/MenuNFTOverview.svg" className='dropdownTblBlockImg' />
+                                <p className='dropdownTblText'>Overall NFT Stats</p>
+                              </div>
+
                             </NavDropdown.Item>
                             <NavDropdown.Item href="#action/3.2">
-                              <p className='dropdownTblText'>Top Collections</p>
+                              <div className='dropdownTblBlock'>
+                                <img src="https://s2.coinmarketcap.com/static/cloud/img/menu/MenuNFTCollections.svg" className='dropdownTblBlockImg' />
+                                <p className='dropdownTblText'>Top Collections</p>
+                              </div>
+
                             </NavDropdown.Item>
                             <NavDropdown.Item href="#action/3.3">
-                              <p className='dropdownTblText'>Upcoming Sales</p>
+                              <div className='dropdownTblBlock'>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" height={40} width={40} viewBox="0 0 40 40" className="dropdownTblBlockImg"><svg width={40} height={40} viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx={16} cy={16} r={16} fill="#16C784" /><path fillRule="evenodd" clipRule="evenodd" d="M12.6667 9.33325C12.2065 9.33325 11.8334 9.70635 11.8334 10.1666V10.9999H11C10.0796 10.9999 9.33337 11.7461 9.33337 12.6666V20.9999C9.33337 21.9204 10.0796 22.6666 11 22.6666H21C21.9205 22.6666 22.6667 21.9204 22.6667 20.9999V12.6666C22.6667 11.7461 21.9205 10.9999 21 10.9999H20.1667V10.1666C20.1667 9.70635 19.7936 9.33325 19.3334 9.33325C18.8731 9.33325 18.5 9.70635 18.5 10.1666V10.9999H13.5V10.1666C13.5 9.70635 13.1269 9.33325 12.6667 9.33325ZM12.6667 13.4999C12.2065 13.4999 11.8334 13.873 11.8334 14.3333C11.8334 14.7935 12.2065 15.1666 12.6667 15.1666H19.3334C19.7936 15.1666 20.1667 14.7935 20.1667 14.3333C20.1667 13.873 19.7936 13.4999 19.3334 13.4999H12.6667Z" fill="white" /></svg></svg>
+                                <p className='dropdownTblText'>Upcoming Sales</p>
+                              </div>
+
                             </NavDropdown.Item>
 
                             <h6 className='dropdownTblTitle' id='NFT'>On Chain Data</h6>
                             <NavDropdown.Item href="#action/3.3">
-                              <p className='dropdownTblText'>Dex Pairs</p>
+                              <div className='dropdownTblBlock'>
+                                <img src="https://s2.coinmarketcap.com/static/cloud/img/menu/MenuDexscan.svg" className='dropdownTblBlockImg' />
+                                <p className='dropdownTblText'>Dex Pairs</p>
+                              </div>
+
                             </NavDropdown.Item>
                             <NavDropdown.Item href="#action/3.3">
-                              <p className='dropdownTblText'>Chain Ranking</p>
+                              <div className='dropdownTblBlock'>
+                                <img src="https://s2.coinmarketcap.com/static/cloud/img/menu/MenuChainRanking.svg" className='dropdownTblBlockImg' />
+                                <p className='dropdownTblText'>Chain Ranking</p>
+                              </div>
+
                             </NavDropdown.Item>
                           </div>
 
@@ -244,38 +308,102 @@ let App = () => {
                       </NavDropdown>
                     </Nav>
 
-
-
                     <Nav className="me-auto">
                       <NavDropdown title="Products" id="basic-nav-dropdown">
                         <div className='dropdownTbl'>
                           <div>
                             <h6 className='dropdownTblTitle'>PRODUCTS</h6>
-                            <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.2">
-                              Another action
+                            <NavDropdown.Item href="#action/3.1">
+                              <div className='dropdownTblBlock'>
+                                <img src="https://s2.coinmarketcap.com/static/cloud/img/menu/MenuConverterIcon.svg" className='dropdownTblBlockImg' />
+                                <p className='dropdownTblText'>Converter</p>
+                              </div>
+
                             </NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+                            <NavDropdown.Item href="#action/3.2">
+                              <div className='dropdownTblBlock'>
+                                <img src="https://s2.coinmarketcap.com/static/cloud/img/menu/MenuMobileAppIcon.svg" className='dropdownTblBlockImg' />
+                                <p className='dropdownTblText'>Mobile Apps</p>
+                              </div>
+
+                            </NavDropdown.Item>
+                            <NavDropdown.Item href="#action/3.3">
+                              <div className='dropdownTblBlock'>
+                                <img src="https://s2.coinmarketcap.com/static/cloud/img/menu/MenuExplorerIcon.svg" className='dropdownTblBlockImg' />
+                                <p className='dropdownTblText'>Blockchain Explorer</p>
+                              </div>
+
+                            </NavDropdown.Item>
+                            <NavDropdown.Item>
+                              <div className='dropdownTblBlock'>
+                                <img src="https://s2.coinmarketcap.com/static/cloud/img/menu/MenuJobsBoardIcon.svg" className='dropdownTblBlockImg' />
+                                <p className='dropdownTblText'>Jobs Board</p>
+                              </div>
+
+                            </NavDropdown.Item>
                             <NavDropdown.Divider />
                             <NavDropdown.Item href="#action/3.4">
-                              Separated link
+                              <div className='dropdownTblBlock'>
+                                <img src="https://s2.coinmarketcap.com/static/cloud/img/menu/MenuCryptoApiIcon.light.svg" className='dropdownTblBlockImg' />
+                                <p className='dropdownTblText'>Crypto API</p>
+                              </div>
+
+                            </NavDropdown.Item>
+                            <NavDropdown.Item>
+                              <div className='dropdownTblBlock'>
+                                <img src="https://s2.coinmarketcap.com/static/cloud/img/menu/MenuWidgetsIcon.light.svg" className='dropdownTblBlockImg' />
+                                <p className='dropdownTblText'>Site Widgets</p>
+                              </div>
+
                             </NavDropdown.Item>
                           </div>
                           <div>
                             <h6 className='dropdownTblTitle'>CAMPAIGNS</h6>
-                            <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.2">
-                              Another action
+                            <NavDropdown.Item href="#action/3.1">
+                              <div className='dropdownTblBlock'>
+                                <img src="https://s2.coinmarketcap.com/static/cloud/img/menu/MenuAirdropsIcon.svg" className='dropdownTblBlockImg' />
+                                <p className='dropdownTblText'>Free Airdrops</p>
+                              </div>
+
                             </NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+                            <NavDropdown.Item href="#action/3.2">
+                              <div className='dropdownTblBlock'>
+                                <img src="https://s2.coinmarketcap.com/static/cloud/img/menu/MenuRewardsIcon.svg" className='dropdownTblBlockImg' />
+                                <p className='dropdownTblText'>Diamond Rewards</p>
+                              </div>
+
+                            </NavDropdown.Item>
+                            <NavDropdown.Item href="#action/3.3">
+                              <div className='dropdownTblBlock'>
+                                <img src="https://s2.coinmarketcap.com/static/cloud/img/menu/MenuReferralIcon.svg" className='dropdownTblBlockImg' />
+                                <p className='dropdownTblText'>Referral Program</p>
+                              </div>
+
+                            </NavDropdown.Item>
+                            <NavDropdown.Item>
+                              <div className='dropdownTblBlock'>
+                                <img src="https://s2.coinmarketcap.com/static/cloud/img/menu/MenuEarnCryptoIcon.svg" className='dropdownTblBlockImg' />
+                                <p className='dropdownTblText'>Learn & Earn</p>
+                              </div>
+
+                            </NavDropdown.Item>
                           </div>
                           <div>
                             <h6 className='dropdownTblTitle'>CALENDARS</h6>
-                            <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.2">
-                              Another action
+                            <NavDropdown.Item href="#action/3.1">
+                              <div className='dropdownTblBlock'>
+                                <img src="https://s2.coinmarketcap.com/static/cloud/img/menu/MenuICOIcon.svg" className='dropdownTblBlockImg' />
+                                <p className='dropdownTblText'>ICO Calendar</p>
+                              </div>
+
                             </NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+                            <NavDropdown.Item href="#action/3.2">
+                              <div className='dropdownTblBlock'>
+                                <img src="https://s2.coinmarketcap.com/static/cloud/img/menu/MenuEvents2Icon.svg" className='dropdownTblBlockImg' />
+                                <p className='dropdownTblText'>Events Calendar</p>
+                              </div>
+
+                            </NavDropdown.Item>
                           </div>
                         </div>
 
@@ -285,66 +413,117 @@ let App = () => {
                     <Nav className="me-auto">
                       <NavDropdown title="Exchanges" id="basic-nav-dropdown">
                         <NavDropdown.Item href="#action/3.1">
-                          <p className='dropdownTblText'>Spot</p>
+                          <div className='dropdownTblBlock'>
+                            <img src="https://s2.coinmarketcap.com/static/cloud/img/menu/MenuSpotIcon.svg" className='dropdownTblBlockImg' />
+                            <p className='dropdownTblText'>Spot</p>
+                          </div>
+
                         </NavDropdown.Item>
                         <NavDropdown.Item href="#action/3.2">
-                          <p className='dropdownTblText'>Derivatives</p>
+                          <div className='dropdownTblBlock'>
+                            <img src="https://s2.coinmarketcap.com/static/cloud/img/menu/MenuDerivativesIcon.svg" className='dropdownTblBlockImg' />
+                            <p className='dropdownTblText'>Derivatives</p>
+                          </div>
+
                         </NavDropdown.Item>
                         <NavDropdown.Item href="#action/3.3">
-                          <p className='dropdownTblText'>DEX</p>
+                          <div className='dropdownTblBlock'>
+                            <img src="https://s2.coinmarketcap.com/static/cloud/img/menu/MenuDexIcon.svg" className='dropdownTblBlockImg' />
+                            <p className='dropdownTblText'>DEX</p>
+                          </div>
+
                         </NavDropdown.Item>
 
                       </NavDropdown>
                     </Nav>
-
-
                     <Nav className="me-auto">
                       <NavDropdown title="Community" id="basic-nav-dropdown">
                         <NavDropdown.Item href="#action/3.1">
-                          <p className='dropdownTblText'>Feeds</p>
+                          <div className='dropdownTblBlock'>
+                            <img src="https://s2.coinmarketcap.com/static/cloud/img/menu/feed.svg" className='dropdownTblBlockImg' />
+                            <p className='dropdownTblText'>Feeds</p>
+                          </div>
+
                         </NavDropdown.Item>
                         <NavDropdown.Item href="#action/3.2">
-                          <p className='dropdownTblText'>Articles</p>
+                          <div className='dropdownTblBlock'>
+                            <img src="https://s2.coinmarketcap.com/static/cloud/img/menu/articles.svg" className='dropdownTblBlockImg' />
+                            <p className='dropdownTblText'>Articles</p>
+                          </div>
+
                         </NavDropdown.Item>
                       </NavDropdown>
                     </Nav>
-
-
 
 
 
                     <Nav className="me-auto">
                       <NavDropdown title="Learn" id="basic-nav-dropdown">
                         <NavDropdown.Item href="#action/3.1">
-                          <p className='dropdownTblText'>Alexandrea</p>
+                          <div className='dropdownTblBlock'>
+                            <img src="https://s2.coinmarketcap.com/static/cloud/img/menu/MenuAlexandriaIcon.svg" className='dropdownTblBlockImg' />
+                            <p className='dropdownTblText'>Alexandria</p>
+                          </div>
                         </NavDropdown.Item>
                         <NavDropdown.Item href="#action/3.2">
-                          <p className='dropdownTblText'>News</p>
+                          <div className='dropdownTblBlock'>
+                            <img src="https://s2.coinmarketcap.com/static/cloud/img/menu/MenuNewsIcon.svg" className='dropdownTblBlockImg' />
+                            <p className='dropdownTblText'>News</p>
+                          </div>
+
                         </NavDropdown.Item>
                         <NavDropdown.Item href="#action/3.3">
-                          <p className='dropdownTblText'>Research</p>
+                          <div className='dropdownTblBlock'>
+                            <img src="https://s2.coinmarketcap.com/static/cloud/img/menu/MenuCMCResearch.svg" className='dropdownTblBlockImg' />
+                            <p className='dropdownTblText'>Research</p>
+                          </div>
+
                         </NavDropdown.Item>
                         <NavDropdown.Item href="#action/3.3">
-                          <p className='dropdownTblText'>Conference</p>
+                          <div className='dropdownTblBlock'>
+                            <img src="https://s2.coinmarketcap.com/static/cloud/img/menu/MenuConferenceIcon.svg" className='dropdownTblBlockImg' />
+                            <p className='dropdownTblText'>Conference</p>
+                          </div>
+
                         </NavDropdown.Item>
                         <NavDropdown.Item href="#action/3.3">
-                          <p className='dropdownTblText'>Video</p>
+                          <div className='dropdownTblBlock'>
+                            <img src="https://s2.coinmarketcap.com/static/cloud/img/menu/MenuVideosIcon.svg" className='dropdownTblBlockImg' />
+                            <p className='dropdownTblText'>Video</p>
+                          </div>
+
                         </NavDropdown.Item>
                         <NavDropdown.Item href="#action/3.3">
-                          <p className='dropdownTblText'>Marker Updates</p>
+                          <div className='dropdownTblBlock'>
+                            <img src="https://s2.coinmarketcap.com/static/cloud/img/menu/MenuMarketUpdatesIcon.svg" className='dropdownTblBlockImg' />
+                            <p className='dropdownTblText'>Marker Updates</p>
+                          </div>
+
                         </NavDropdown.Item>
                         <NavDropdown.Item href="#action/3.3">
-                          <p className='dropdownTblText'>Glossary</p>
+                          <div className='dropdownTblBlock'>
+                            <img src="https://s2.coinmarketcap.com/static/cloud/img/menu/MenuGlossaryIcon.svg" className='dropdownTblBlockImg' />
+                            <p className='dropdownTblText'>Glossary</p>
+                          </div>
                         </NavDropdown.Item>
                         <NavDropdown.Item href="#action/3.3">
-                          <p className='dropdownTblText'>Where to Buy</p>
+                          <div className='dropdownTblBlock'>
+                            <img src="https://s2.coinmarketcap.com/static/cloud/img/menu/MenuBuyIcon.svg" className='dropdownTblBlockImg' />
+                            <p className='dropdownTblText'>Where to Buy</p>
+                          </div>
                         </NavDropdown.Item>
                         <NavDropdown.Divider />
                         <NavDropdown.Item href="#action/3.4">
-                          <p className='dropdownTblText'>Newsletter</p>
+                          <div className='dropdownTblBlock'>
+                            <img src="https://s2.coinmarketcap.com/static/cloud/img/menu/MenuNewsletterIcon.light.svg" className='dropdownTblBlockImg' />
+                            <p className='dropdownTblText'>Newsletter</p>
+                          </div>
                         </NavDropdown.Item>
                         <NavDropdown.Item href="#action/3.3">
-                          <p className='dropdownTblText'>Methodology</p>
+                          <div className='dropdownTblBlock'>
+                            <img src="https://s2.coinmarketcap.com/static/cloud/img/menu/MenuMethodologyIcon.light.svg" className='dropdownTblBlockImg' />
+                            <p className='dropdownTblText'>Methodology</p>
+                          </div>
                         </NavDropdown.Item>
                       </NavDropdown>
                     </Nav>
@@ -366,7 +545,11 @@ let App = () => {
           </div>
         </section>
         {/* Start block */}
-
+        <div className='slideContainer'>
+          <SlideTbl />
+          <SlideTbl />
+          <PostComponent />
+        </div>
         <section className="bg-white dark:bg-gray-900">
           <div className="grid max-w-screen-xl px-4 pt-20 pb-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 lg:pt-28">
             <div className="mr-auto place-self-center lg:col-span-7">
