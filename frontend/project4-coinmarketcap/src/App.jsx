@@ -434,7 +434,7 @@ let App = () => {
 
                         </NavDropdown.Item>
 
-                      </NavDropdown>
+                     `` </NavDropdown>
                     </Nav>
                     <Nav className="me-auto">
                       <NavDropdown title="Community" id="basic-nav-dropdown">
