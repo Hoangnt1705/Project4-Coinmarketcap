@@ -1,77 +1,93 @@
 /* Example in Node.js */
 const express = require('express');
 const app = express();
-const port = `3400`;
 const axios = require('axios');
 const morgan = require('morgan');
 const http = require('http').createServer();
 const io = require('socket.io')(http);
+const port = process.env.PORT || 3190;
+const API_KEY = '6e341607-5728-40eb-a24b-a0c789a9b683';
+let requests = 0;
+const MAX_REQUESTS_PER_SECOND = 1;
 app.use(morgan());
 
+// app.get('/api/global-metrics/quotes/latest', (req, res) => {
+//     /* Example in Node.js */
+//     res.send("aaaa")
 
-
-app.get('/api/global-metrics/quotes/latest', (req, res) => {
-    /* Example in Node.js */
-    axios.get('https://pro-api.coinmarketcap.com/v1/global-metrics/quotes/latest', {
-        headers: {
-            'X-CMC_PRO_API_KEY': '6e341607-5728-40eb-a24b-a0c789a9b683',
-        },
-    })
-        .then(response => {
-            console.log(response.data);
-            let { data } = response.data;
-            res.send(data);
-
-        })
-        .catch(err => console.log(err));
-})
-
-app.get('/api/cryptocurrency/listings/latest', (req, res) => {
-    /* Example in Node.js */
-    axios.get('https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest', {
-        headers: {
-            'X-CMC_PRO_API_KEY': '6e341607-5728-40eb-a24b-a0c789a9b683',
-        },
-    })
-        .then(response => {
-            console.log(response.data);
-            let { data } = response.data;
-            res.send(data);
-
-        })
-        .catch(err => console.log(err));
-})
-
-// io.on('connection', socket => {
-//     axios.get('https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest', {
-//         headers: {
-//             'X-CMC_PRO_API_KEY': '6e341607-5728-40eb-a24b-a0c789a9b683',
-//         },
-//     })
-//         .then(response => {
-//             console.log(response.data);
-//             let { data } = response.data;
-
-//             // Emit the data to the client using socket.io
-//             socket.emit('data', data);
-//         })
-//         .catch(err => console.log(err));
 // });
 
-app.listen(port, () => {
+
+
+io.on('connection', (socket) => {
+    console.log('Client connected');
+    function sendRequest() {
+        if (requests < MAX_REQUESTS_PER_SECOND) {
+            axios.get('https://pro-api.coinmarketcap.com/v1/global-metrics/quotes/latest', {
+                headers: {
+                    'X-CMC_PRO_API_KEY': API_KEY,
+                },
+            })
+                .then(response => {
+                    console.log(response.data);
+                    let { data } = response.data;
+                    socket.emit('global-metrics-quotes', data);
+
+                })
+                .catch(err => console.log(err));
+            ///
+            axios.get('https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest', {
+                headers: {
+                    'X-CMC_PRO_API_KEY': API_KEY,
+                },
+            })
+                .then(response => {
+                    console.log(response.data);
+                    let { data } = response.data;
+                    socket.emit('cryptocurrency-listings', data);
+
+                })
+                .catch(err => console.log(err));
+            requests++;
+            console.log(requests);
+        } else {
+            setTimeout(() => {
+                axios.get('https://pro-api.coinmarketcap.com/v1/global-metrics/quotes/latest', {
+                    headers: {
+                        'X-CMC_PRO_API_KEY': API_KEY,
+                    },
+                })
+                    .then(response => {
+                        console.log(response.data);
+                        let { data } = response.data;
+                        socket.emit('global-metrics-quotes', data);
+
+                    })
+                    .catch(err => console.log(err));
+                ///
+                axios.get('https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest', {
+                    headers: {
+                        'X-CMC_PRO_API_KEY': API_KEY,
+                    },
+                })
+                    .then(response => {
+                        console.log(response.data);
+                        let { data } = response.data;
+                        socket.emit('cryptocurrency-listings', data);
+
+                    })
+                    .catch(err => console.log(err));
+                console.log("aaaa");
+            }, 2000);
+        }
+    }
+    sendRequest();
+    setInterval(sendRequest, 500000);
+
+
+});
+
+http.listen(port, () => {
     console.log(" listening on port: http://localhost:" + port);
 })
 
-
-// const express = require('express');
-// const app = express();
-// const http = require('http');
-// const server = http.createServer(app);
-
-// app.get('/', (req, res) => {
-//     res.send('<h1>Hello world</h1>');
-// });
-
-// server.listen(3400, () => {
-//     console.log('listening on http://localhost:3400');
-// });

@@ -335,6 +335,10 @@ menu {
   padding: 0;
 }
 
+.nonPadding {
+  padding-left: 0px !important;
+}
+
 /*
 Prevent resizing textareas horizontally by default.
 */
@@ -1104,9 +1108,6 @@ input:checked+.toggle-bg {
   margin-left: 0.25rem;
 }
 
-.mt-4 {
-  margin-top: 1rem;
-}
 
 .mr-auto {
   margin-right: auto;
@@ -2260,6 +2261,7 @@ input:checked+.toggle-bg {
 @media (min-width: 1024px) {
   .lg\:order-2 {
     order: 2;
+    margin-right: -13px;
   }
 
   .lg\:order-1 {
@@ -2358,13 +2360,12 @@ input:checked+.toggle-bg {
   .lg\:space-x-8> :not([hidden])~ :not([hidden]) {
     --tw-space-x-reverse: 0;
     margin-right: calc(2rem * var(--tw-space-x-reverse));
-    margin-left: calc(2rem * calc(1 - var(--tw-space-x-reverse)));
   }
 
   .lg\:space-y-20> :not([hidden])~ :not([hidden]) {
     --tw-space-y-reverse: 0;
     margin-top: calc(5rem * calc(1 - var(--tw-space-y-reverse)));
-    margin-bottom: calc(5rem * var(--tw-space-y-reverse));
+    margin-bottom: calc(3rem * var(--tw-space-y-reverse));
   }
 
   .lg\:space-y-0> :not([hidden])~ :not([hidden]) {
@@ -2410,8 +2411,8 @@ input:checked+.toggle-bg {
   }
 
   .lg\:py-24 {
-    padding-top: 6rem;
-    padding-bottom: 6rem;
+    padding-top: 2rem;
+    padding-bottom: 2.3rem;
   }
 
   .lg\:px-6 {
@@ -2523,7 +2524,7 @@ input:checked+.toggle-bg {
 }
 
 .block-detail {
-  font-size: 11px;
+  font-size: 12px;
   color: rgb(88, 102, 126);
   margin-inline-end: 12px;
   white-space: nowrap;
@@ -2878,7 +2879,7 @@ button span:after {
   position: absolute;
   top: 0;
   bottom: 0;
-  left: 59%;
+  left: 57%;
   width: 14%;
   height: 100%;
   margin: 0;
@@ -3053,6 +3054,17 @@ input[type="radio"] {
   border-radius: 50%;
 }
 
+.readMore {
+  text-decoration: overline !important;
+}
+
+.readMore:hover {
+  text-decoration: underline !important;
+  color: gray !important;
+  transition: 1s linear !important;
+
+}
+
 @keyframes moveup {
   0% {
     bottom: -25px;
@@ -3212,7 +3224,10 @@ input[type="radio"] {
 
 }
 
-
+.overflow-x-auto {
+  overflow-x: auto !important;
+  padding: 0px 60px;
+}
 
 .option:hover .label {
   color: #fff;
@@ -3258,7 +3273,9 @@ input[type="radio"] {
   width: 100px !important;
 }
 
-
+.globalMetrics {
+  color: #5521b5;
+}
 
 
 @media (min-width: 1280px) {
@@ -3288,28 +3305,33 @@ input[type="radio"] {
   }
 }
 
-.dropdownTbl{
+.dropdownTbl {
   display: flex;
 }
 
-.dropdownTblTitle{
+.dropdownTblTitle {
   color: rgb(168, 167, 167);
   margin-left: 15px;
 }
 
-.dropdownTblText{
+.dropdownTblText {
   margin: 0px;
   font-weight: 700;
 }
 
-#NFT{
+#NFT {
   margin-top: 7px;
 }
 
-.dropdown-menu{
+.dropdown-menu {
   left: -50% !important;
-  
+
 }
+
+a {
+  text-decoration: none !important;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
