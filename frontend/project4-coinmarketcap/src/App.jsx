@@ -17,13 +17,12 @@ import { initializeApp } from "firebase/app";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 let App = () => {
   const firebaseConfig = {
-    apiKey: "AIzaSyADD7SOk6lYqXZczh--7rydg7LR4Mj9OYM",
-    authDomain: "project-4-64893.firebaseapp.com",
-    projectId: "project-4-64893",
-    storageBucket: "project-4-64893.appspot.com",
-    messagingSenderId: "265891814289",
-    appId: "1:265891814289:web:15747ca5a313e1442ed830",
-    measurementId: "G-ND7TVZPFRN"
+    apiKey: "AIzaSyAwZ9eCKfJStYiWM_RVDjKSFmhKuBW7330",
+    authDomain: "project4-79573.firebaseapp.com",
+    projectId: "project4-79573",
+    storageBucket: "project4-79573.appspot.com",
+    messagingSenderId: "700261822421",
+    appId: "1:700261822421:web:00374d946b79ecfcc8175c"
   };
   const app = initializeApp(firebaseConfig);
   const auth = getAuth();
