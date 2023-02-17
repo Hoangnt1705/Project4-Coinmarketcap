@@ -3348,6 +3348,11 @@ a {
   white-space: nowrap;
 }
 
+.hoverRow:hover {
+  background: rgb(238, 246, 245) !important;
+  padding: 0px 5px;
+}
+
 .flex-wrap-detail {
   display: grid;
   padding: 0px;
@@ -4327,20 +4332,20 @@ input[type="radio"] {
   position: relative;
   left: 50%;
   transform: translate(-50%, -50%);
-  box-shadow: 5px 8px #a2a1a1;
+  /* box-shadow: 5px 8px #a2a1a1; */
 }
 
 .registerContainer {
   top: 50%;
   background-color: white;
   width: 33vw;
-  height: 70vh;
+  height: 80vh;
   border-radius: 15px;
   border: black solid 1px;
   position: relative;
   left: 50%;
   transform: translate(-50%, -50%);
-  box-shadow: 1px 1px 1px 1px #a2a1a1;
+  /* box-shadow: 1px 1px 1px 1px #a2a1a1; */
 }
 
 .userInfor {
@@ -4388,29 +4393,69 @@ hr {
 
   height: 100vh;
   background-image: url("image/terra-luna-new-chain-coinmarketcap.jpg");
-  background-color: rgba(10, 30, 66, 0.4);
+  /* background-color: rgba(10, 30, 66, 0.4); */
   opacity: 1;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  position: fixed;
+  left: 35%;
+  top: 5%;
 }
+
 
 .form {
   margin: 15px;
 }
 
 .btn {
-  background-color: #5521b5;
-  width: 80%;
+  background-color: #5521b5 !important;
+  width: 30%;
+  height: 150%;
+  padding-top: 20px;
+  padding-bottom: 20px;
   margin-left: 50%;
   transform: translate(-50%);
   border-radius: 10px;
+  border: 1pt solid #5521b5 !important;
+  outline: none;
+  list-style: none;
+
+}
+
+.btn:hover {
+  background-color: #351571 !important;
 
 }
 
 .errMess {
   color: red;
 }
+
+.out {
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.fa-x {
+  color: gray;
+}
+
+.outRegister {
+  margin-top: 20px;
+  margin-left: 20px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.tagPostComponent {
+  background: rgb(215, 214, 214);
+  padding: 6px 9px;
+  margin: 7px;
+  border-radius: 5px !important;
+}
+
+
 
 @tailwind base;
 @tailwind components;

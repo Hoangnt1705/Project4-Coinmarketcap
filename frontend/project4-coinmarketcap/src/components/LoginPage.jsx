@@ -24,6 +24,11 @@ let LoginPage = (props) => {
         <div className='page'>
             <div className="loginContainer">
                 <div className='form'>
+                    <div className="out">
+                        <Link to="/">
+                            <i class="fa-solid fa-x"></i>
+                        </Link>
+                    </div>
                     <div className="title">
                         <div className="h3">
                             <Link to="/login" id='login1'>Đăng nhập</Link>

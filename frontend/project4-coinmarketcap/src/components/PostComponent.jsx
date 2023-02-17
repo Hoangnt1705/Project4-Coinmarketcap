@@ -1,7 +1,14 @@
-let PostComponent = () => {
+import React, { useState } from 'react';
+let PostComponent = (props) => {
+    let { cryptocurrencyListings } = props;
+    console.log(cryptocurrencyListings);
     return (
         <div className="postComponent">
-            <marquee>This text will scroll from right to left</marquee>
+            <marquee>
+                {cryptocurrencyListings.map((element) => (
+                    <span className="tagPostComponent">#{element.symbol}</span>
+                ))}
+            </marquee>
             <div className="posComponentTop">
                 <div className="posComponentTopLeft">
                     <img className="postComponentImg" src="https://s2.coinmarketcap.com/static/cloud/img/avatars/default.png" />

@@ -27,6 +27,11 @@ let RegisterPage = (props) => {
     return (
         <div className='page'>
             <div className="registerContainer">
+                <div className="outRegister">
+                    <Link to="/">
+                        <i class="fa-solid fa-x"></i>
+                    </Link>
+                </div>
                 <div className='form'>
                     <div className="title">
                         <div className="h3">

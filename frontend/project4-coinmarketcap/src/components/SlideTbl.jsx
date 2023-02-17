@@ -35,9 +35,12 @@ let SlideTbl = () => {
             <Slide>
                 {slideImages.map((slideImage, index) => (
                     <div key={index}>
-                        <div style={{ ...divStyle, 'backgroundImage': `url(${slideImage.url})` }}>
-                            <span style={spanStyle}>{slideImage.caption}</span>
+                        <div style={{ ...divStyle }}>
+                            <h1>Hello world</h1>
+                            <h1>Hello world</h1>
+                            <h1>Hello world</h1>
                         </div>
+                        
                     </div>
                 ))}
             </Slide>
