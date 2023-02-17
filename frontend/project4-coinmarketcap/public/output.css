@@ -4456,7 +4456,200 @@ hr {
 }
 
 
+.slide-body{
+  display: flex;
+  flex-direction: column;
+}
+.slideTop{
+  display: flex;
+  justify-content: space-between !important;
+  height: 26px;
+  margin-bottom: 6px;
+  align-items: center;
+  width: 80%;
+  
+}
+.slideTopLeft{
+  display: flex;
+  align-items: center;
+}
+.slideTopLeft h5{
+  display: flex;
+  margin: 0px;
+  left: 23px;
+  top:-3px;
+}
+.slideTopLeft img{
+  width: 20px;
+  height: 20px;
+}
+.slideTopRight{
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  font-size: 12px;
+}
+.kZybLy{
+  margin: 2.5px 0px 0px 4px !important;
+}
+.top{
+  width: 80%;
+  height: 20%;
+  display: flex;
+  justify-content: space-between;
+}
+.topLeft{
+  display: flex;
+  align-items: center;
+}
+.topLeft img{
+  margin-left: 10px;
+  height: 16px;
+  width: 16px;
+  align-items: center;
+}
+.topLeft span{
+  margin-left: 5px;
+  align-items: center;
+  color: gray;
+  font-size: 12px;
+  font-weight: 600;
+}
+.coinName{
+  align-items: center;
+  margin: 0px 0px 0px 8px !important;
+  font-size: 12px;
+  font-weight: 600;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.coinToken{
+  font-size: 12px;
+  color: gray;
+  margin-left: 8px;
+}
+.topRight{
+  display: flex;
+}
+.topRight span{
+  align-items: center;
+  font-weight: 500;
+  height: 40;
+  line-height: 40px;
+  display: flex;
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+.form-control{
+  height: 37.6px !important;
+  font-size: 1rem !important;
+}
+.scroll-indicator{
+  width: 100%;
+  height: 64px;
+  box-sizing: border-box;
+  margin: 0px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  overflow: auto visible;
+  position: relative;
+  white-space: nowrap;
+}
+.scroll-child{
+  height: 30px;
+  
+  display: flex;
+}
+.scroll-left{
+  height: 30px;
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
 
+}
+.kSTIeH{
+  height: 16px;
+  width: 1px;
+  background-color: rgb(207 214 228);
+  margin: 0px 16px;
+}
+.btnFake{
+  display: flex;
+  color: gray;
+  border-radius: 5px;
+  font-size: 13px;
+  font-weight: 600;
+  align-items: center;
+  text-align: 32px;
+  height: 32px;
+  background-color: rgb(223, 231, 247);
+  margin: 5px;
+  cursor: pointer;
+}
+#Watchlist{
+  line-height: 32px;
+  color: black;
+  margin: 0px;
+  padding: 2px;
+}
+.btnFake:hover{
+  color: black;
+  background-color: rgb(207 214 228);
+}
+.fa-solid{
+  display: flex;
+  padding-left: 5px;
+
+}
+.scroll-center{
+  height: 30px;
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+}
+#btnFake{
+  width: 110px;
+}
+.btnFake2{
+  color: gray;
+  border-radius: 5px;
+  font-size: 13px;
+  font-weight: 600;
+  align-items: center;
+  text-align: 32px;
+  height: 32px;
+  background-color: white;
+  margin: 5px;
+  cursor: pointer;
+}
+.btnFake2:hover{
+  background-color: rgb(207 214 228);
+}
+.showRowsContainer{
+  display: flex;
+  margin: 0px;
+  align-items: center;
+}
+.showRows{
+  color: gray;
+  margin: 0px;
+  line-height: 41.6px;
+  font-size: 13px;
+  font-weight: 400;
+  margin-right: 5px;
+}
+.select{
+  border-radius: 5px;
+  background-color: rgb(223, 231, 247);
+  width: 50px;
+  height: 20px;
+  line-height: 20px;
+  padding: 0px;
+  font-size: 20px;
+}
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
