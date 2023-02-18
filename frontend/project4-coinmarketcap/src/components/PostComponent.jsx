@@ -20,6 +20,7 @@ let PostComponent = (props) => {
                 </div>
             </div>
             <input className="cmt" type="text" placeholder="Select a hashtag for your Community post" />
+            
         </div>
 
     )

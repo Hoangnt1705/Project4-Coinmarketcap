@@ -17,13 +17,12 @@ import { initializeApp } from "firebase/app";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 let App = () => {
   const firebaseConfig = {
-    apiKey: "AIzaSyADD7SOk6lYqXZczh--7rydg7LR4Mj9OYM",
-    authDomain: "project-4-64893.firebaseapp.com",
-    projectId: "project-4-64893",
-    storageBucket: "project-4-64893.appspot.com",
-    messagingSenderId: "265891814289",
-    appId: "1:265891814289:web:15747ca5a313e1442ed830",
-    measurementId: "G-ND7TVZPFRN"
+    apiKey: "AIzaSyAwZ9eCKfJStYiWM_RVDjKSFmhKuBW7330",
+    authDomain: "project4-79573.firebaseapp.com",
+    projectId: "project4-79573",
+    storageBucket: "project4-79573.appspot.com",
+    messagingSenderId: "700261822421",
+    appId: "1:700261822421:web:00374d946b79ecfcc8175c"
   };
   const app = initializeApp(firebaseConfig);
   const auth = getAuth();
@@ -572,6 +571,7 @@ let App = () => {
             <SlideTbl />
             <PostComponent cryptocurrencyListings={cryptocurrencyListings} />
           </div>
+          
           <section className="bg-white dark:bg-gray-900">
             <div className="grid max-w-screen-xl px-4 pt-20 pb-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 lg:pt-28">
               <div className="mr-auto place-self-center lg:col-span-7">
@@ -595,6 +595,44 @@ let App = () => {
 
           {/* End block */}
           {/* Start block */}
+          <div className='scroll-indicator'>
+                <div className='scroll-child'>
+                  <div className='scroll-left'>
+                      <button className='btnFake'>
+                        <i class="fa-solid fa-star"></i>
+                        <p id='Watchlist'>Watchlist</p>
+                        </button>
+                      <button className='btnFake'>
+                      <i class="fa-solid fa-earth-asia"></i>
+                      <p id='Watchlist'>Portfolio</p>
+                        </button> 
+                    <div className='kSTIeH'></div>
+                  </div>
+                  <div className='scroll-center'>
+                  <button className='btnFake2' id='btnFake'>Cryptocurrencies</button>
+                  <button className='btnFake2'>Categories</button>
+                  <button className='btnFake2'>DeFI</button>
+                  <button className='btnFake2'>NFT</button>
+                  <button className='btnFake2'>Metaverse</button>
+                  <button className='btnFake2'>Polkadot</button>
+                  <button className='btnFake2'>BNB Chain</button>
+                  <button className='btnFake2'>Solana</button>
+                  <button className='btnFake2'>Avalanche</button>
+                  </div>
+                  <div className='scroll-left'>
+                      <div className='showRowsContainer'>
+                        <p className='showRows'>Show rows</p>
+                        <select className='select'>
+                          <option>100</option>
+                          <option>50</option>
+                          <option>20</option>
+                        </select>
+                      </div>
+                  </div>
+                </div>
+          </div>
+
+
           <section className="bg-white dark:bg-gray-900">
             <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
               <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">

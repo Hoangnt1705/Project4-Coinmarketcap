@@ -9,9 +9,7 @@ const port = process.env.PORT || 3190;
 const API_KEY = '6e341607-5728-40eb-a24b-a0c789a9b683';
 let requests = 0;
 const MAX_REQUESTS_PER_SECOND = 1;
-app.use(morgan());
-
-
+app.use(morgan('combined'));
 io.on('connection', (socket) => {
     console.log('Client connected');
     function sendRequest() {

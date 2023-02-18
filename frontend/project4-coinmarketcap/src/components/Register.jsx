@@ -90,7 +90,7 @@ let RegisterPage = (props) => {
                         </div>
                         <div className="mb-3 form-check">
                             <input type="checkbox" className="form-check-input" id="exampleCheck1" />
-                            <label className="form-check-label" htmlFor="exampleCheck1">I agree to receive marketing updated from CoinMarketCap</label>
+                            <label required className="form-check-label" htmlFor="exampleCheck1">I agree to receive marketing updated from CoinMarketCap</label>
                         </div>
                         <button type="click" className="btn btn-primary">Tạo tài khoản</button>
                     </form>
