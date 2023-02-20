@@ -5,15 +5,26 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 let RegisterPage = (props) => {
-    let { auth, createUserWithEmailAndPassword } = props;
+    let { auth, createUserWithEmailAndPassword, db, collection, addDoc } = props;
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     let registerAuthentication = (email, password) => {
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 const user = userCredential.user;
-                console.log("user", user.email);
-                toast('Đăng kí thành công')
+                let getUserData = async () => {
+                    try {
+                        const docRef = await addDoc(collection(db, "users"), {
+                            email: email,
+                            password: password
+                        })
+                        console.log(docRef);
+                        toast('Đăng kí thành công');
+                    } catch (err) {
+                        console.log(err);
+                    }
+                }
+                getUserData();
             })
             .catch(error => {
                 const errorCode = error.code;
