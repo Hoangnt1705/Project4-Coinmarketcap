@@ -3,11 +3,11 @@ import 'react-slideshow-image/dist/styles.css';
 import TblTop from './TblTop';
 
 let SlideTbl = () => {
-    const spanStyle = {
-        padding: '20px',
-        background: '#efefef',
-        color: '#000000'
-    }
+    // const spanStyle = {
+    //     padding: '20px',
+    //     background: '#efefef',
+    //     color: '#000000'
+    // }
 
     const divStyle = {
         display: 'flex',
