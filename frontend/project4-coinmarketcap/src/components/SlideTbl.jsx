@@ -19,7 +19,7 @@ let SlideTbl = () => {
     }
     const slideImages = [
         {
-            title:"Trending",
+            title: "Trending",
             url: 'https://images.unsplash.com/photo-1509721434272-b79147e0e708?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80',
             caption: 'Slide 1'
         },
@@ -40,21 +40,20 @@ let SlideTbl = () => {
                 {slideImages.map((slideImage, index) => (
                     <div key={index}>
                         <div className='slide-body' style={{ ...divStyle }}>
-                        <div className='slideTop'>
-                            <div className='slideTopLeft'>
-                            <img src="https://s2.coinmarketcap.com/static/cloud/img/GainnerIcon.png?_=2cbfbbf" alt="" />
-                            <h5>Title</h5>
+                            <div className='slideTop'>
+                                <div className='slideTopLeft'>
+                                    <img src="https://s2.coinmarketcap.com/static/cloud/img/GainnerIcon.png?_=2cbfbbf" alt="" />
+                                    <h5>Title</h5>
+                                </div>
+                                <div className='slideTopRight'>
+                                    <span>More</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" height={8} width={6} viewBox="0 0 6 8" className="sc-aef7b723-0 kZybLy" style={{ marginLeft: '6px' }}><path d="M1.5 1L4.5 4L1.5 7" stroke="#3861FB" strokeWidth={2} strokeMiterlimit={10} strokeLinecap="round" strokeLinejoin="round" /></svg>
+                                </div>
                             </div>
-                            <div className='slideTopRight'>
-                                <span>More</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" height={8} width={6} viewBox="0 0 6 8" className="sc-aef7b723-0 kZybLy" style={{marginLeft: '6px'}}><path d="M1.5 1L4.5 4L1.5 7" stroke="#3861FB" strokeWidth={2} strokeMiterlimit={10} strokeLinecap="round" strokeLinejoin="round" /></svg>
-                            </div>
+                            <TblTop />
+                            <TblTop />
+                            <TblTop />
                         </div>
-                        <TblTop/>
-                        <TblTop/>
-                        <TblTop/>
-                        </div>
-                        
                     </div>
                 ))}
             </Slide>

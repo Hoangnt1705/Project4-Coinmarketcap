@@ -26,7 +26,6 @@ io.on('connection', (socket) => {
                 },
             })
                 .then(response => {
-                    console.log(response.data);
                     let { data } = response.data;
                     socket.emit('global-metrics-quotes', data);
 
@@ -39,14 +38,24 @@ io.on('connection', (socket) => {
                 },
             })
                 .then(response => {
-                    console.log(response.data);
                     let { data } = response.data;
+                    console.log(data);
                     socket.emit('cryptocurrency-listings', data);
 
                 })
                 .catch(err => console.log(err));
+            axios.get('https://pro-api.coinmarketcap.com/v1/cryptocurrency/categories', {
+                headers: {
+                    'X-CMC_PRO_API_KEY': API_KEY,
+                },
+            })
+                .then(response => {
+                    let { data } = response;
+                    socket.emit('cryptocurrency-categories', data);
+
+                })
+                .catch(err => console.log(err));
             requests++;
-            console.log(requests);
         } else {
             setTimeout(() => {
                 axios.get('https://pro-api.coinmarketcap.com/v1/global-metrics/quotes/latest', {
@@ -55,7 +64,6 @@ io.on('connection', (socket) => {
                     },
                 })
                     .then(response => {
-                        console.log(response.data);
                         let { data } = response.data;
                         socket.emit('global-metrics-quotes', data);
 
@@ -68,18 +76,17 @@ io.on('connection', (socket) => {
                     },
                 })
                     .then(response => {
-                        console.log(response.data);
                         let { data } = response.data;
                         socket.emit('cryptocurrency-listings', data);
 
                     })
                     .catch(err => console.log(err));
                 console.log("aaaa");
-            }, 2000);
+            }, 2000000);
         }
     }
     sendRequest();
-    setInterval(sendRequest, 500000);
+    setInterval(sendRequest, 20000000);
 
 
 });

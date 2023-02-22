@@ -11,13 +11,13 @@ let LoginPage = (props) => {
             .then((userCredential) => {
                 const user = userCredential.user;
                 console.log("user", user);
+                window.location.href = "http://localhost:3006";
                 toast('Wellcome')
             })
             .catch((error) => {
                 console.log(error.message);
                 toast("Email hoặc mật khẩu không chính xác")
             })
-
     }
 
     return (

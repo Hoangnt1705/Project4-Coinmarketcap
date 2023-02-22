@@ -4195,13 +4195,12 @@ input[type="radio"] {
   display: flex;
   height: 205px;
   margin: 0px;
-  padding: 0 120px;
   justify-content: space-around;
-  background-color: rgb(249 250 251 );
+  background-color: rgb(249 250 251);
 }
 
 .slide-container {
-  width: 26vw;
+  width: 27.3vw;
   border: 0.5px solid #cfd6e4;
   border-radius: 5px;
   background-color: white;
@@ -4212,7 +4211,7 @@ input[type="radio"] {
   border: 0.5px solid #cfd6e4;
   border-radius: 5px;
   background-color: white;
-  padding: 0px 10px; 
+  padding: 0px 10px;
   padding-top: -20px;
 }
 
@@ -4692,7 +4691,7 @@ hr {
   font-size: 20px;
 }
 
-.cmtBtn{
+.cmtBtn {
   background-color: #5521b5 !important;
   /* margin-top: 10px;
   margin-bottom: 10px; */
@@ -4709,6 +4708,58 @@ hr {
   margin-right: 0px !important;
   margin: 0 auto;
   margin-top: 8px
+}
+
+.hSidGQ {
+  margin-inline-start: 4px;
+  margin-top: 12px;
+}
+
+.hSidGQ .avatar-img {
+  cursor: pointer;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  border: 2px solid var(--color-light-neutral-7);
+  transition: border 100ms ease-out 0s;
+  width: 32px;
+  height: 32px;
+  border-radius: 16px;
+}
+
+.hSidGQ .avatar-img img {
+  width: 28px;
+  height: 28px;
+  border-radius: 14px;
+  margin-left: 25px;
+}
+
+.irxEdg {
+  box-sizing: border-box;
+  margin: 0px;
+  height: 22px;
+  width: 22px;
+  margin-top: 15px;
+  margin-right: 10px;
+}
+
+tbody,
+td,
+tfoot,
+th,
+thead,
+tr {
+  border-color: inherit;
+  border-style: solid;
+  border-width: 0;
+  border-radius: 10px;
+  padding: 2px 2px 2px 2px;
+}
+
+.boldListingCrypto {
+  font-weight: bold
 }
 
 @tailwind base;

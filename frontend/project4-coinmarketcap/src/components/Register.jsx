@@ -5,33 +5,33 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 let RegisterPage = (props) => {
-    let { auth, createUserWithEmailAndPassword, db, collection, addDoc } = props;
+    let { auth, createUserWithEmailAndPassword, db, collection, addDoc, doc, setDoc, updateDoc,
+        getDoc, serverTimestamp, arrayUnion, arrayRemove } = props;
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     let registerAuthentication = (email, password) => {
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 const user = userCredential.user;
-                let getUserData = async () => {
+                const updateUser = async (userId, newData) => {
+                    const userDocRef = doc(db, "users", "userDocs");
                     try {
-                        const docRef = await addDoc(collection(db, "users"), {
-                            email: email,
-                            password: password
-                        })
-                        console.log(docRef);
-                        toast('Đăng kí thành công');
-                    } catch (err) {
-                        console.log(err);
+                        await updateDoc(userDocRef, {
+                            dataUsers: arrayUnion({
+                                id: Date.now(),
+                                email: email,
+                                password: password,
+                            }),
+                        });
+                        toast("Đăng ký thành công");
+                    } catch (error) {
+                        toast(error.message);
                     }
-                }
-                getUserData();
+                };
+                updateUser();
             })
             .catch(error => {
-                const errorCode = error.code;
-                console.log(errorCode);
-                const errorMessage = error.message;
-                console.log(errorMessage);
-                toast('Email đã được sử dụng')
+                toast(error.message)
             })
     }
 
@@ -40,7 +40,7 @@ let RegisterPage = (props) => {
             <div className="registerContainer">
                 <div className="outRegister">
                     <Link to="/">
-                        <i class="fa-solid fa-x"></i>
+                        <i className="fa-solid fa-x"></i>
                     </Link>
                 </div>
                 <div className='form'>

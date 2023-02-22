@@ -5,8 +5,8 @@ let PostComponent = (props) => {
     return (
         <div className="postComponent">
             <marquee>
-                {cryptocurrencyListings.map((element) => (
-                    <span className="tagPostComponent">#{element.symbol}</span>
+                {cryptocurrencyListings.map((element, index) => (
+                    <span key={index} className="tagPostComponent">#{element.symbol}</span>
                 ))}
             </marquee>
             <div className="posComponentTop">
