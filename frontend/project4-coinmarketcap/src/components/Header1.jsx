@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import LoginPage from './components/LoginPage';
-import Register from './components/Register';
+import LoginPage from './LoginPage';
+import Register from './Register';
 import { getFirestore, collection, addDoc } from "firebase/firestore";
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
@@ -409,7 +409,7 @@ let Header1 =(props)=>{
 
               </NavDropdown.Item>
 
-              `` </NavDropdown>
+             </NavDropdown>
           </Nav>
           <Nav className="me-auto">
             <NavDropdown title="Community" id="basic-nav-dropdown">
