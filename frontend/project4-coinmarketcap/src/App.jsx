@@ -729,9 +729,23 @@ let App = (props) => {
 
         </div >
 
-
       </Router>
     </div >
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
   )
 
 }
