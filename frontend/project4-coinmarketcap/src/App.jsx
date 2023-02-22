@@ -44,9 +44,14 @@ let App = (props) => {
     const newListingsPercentChange1HColors = [];
     const newListingsPercentChange24HColors = [];
     const newListingsPercentChange7DColors = [];
+    const newListingsPriceIcons = [];
+    const newListingsPercentChange1HIcons = [];
+    const newListingsPercentChange24HIcons = [];
+    const newListingsPercentChange7DIcons = [];
     for (let i = 0; i < cryptocurrencyListings.length; i++) {
       if (cryptocurrencyListings[i].quote.USD.price > newCryptocurrencyListings[i].quote.USD.price) {
         newListingsPriceColors.push('#16c784');
+        newListingsPriceIcons.push('')
       }
       else if (cryptocurrencyListings[i].quote.USD.price < newCryptocurrencyListings[i].quote.USD.price) {
         newListingsPriceColors.push('#ea3943');
