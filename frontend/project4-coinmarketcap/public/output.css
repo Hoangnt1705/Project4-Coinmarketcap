@@ -4762,6 +4762,463 @@ tr {
   font-weight: bold
 }
 
+.coinToken {
+  font-size: 12px;
+  color: gray;
+  margin-left: 8px;
+}
+
+.topRight {
+  display: flex;
+}
+
+.topRight span {
+  align-items: center;
+  font-weight: 500;
+  height: 40;
+  line-height: 40px;
+  display: flex;
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.form-control {
+  height: 37.6px !important;
+  font-size: 1rem !important;
+}
+
+.scroll-indicator {
+  /* width: 100vw; */
+  height: 64px;
+  /* box-sizing: border-box; */
+  margin: 0px 45px;
+  display: flex;
+  /* flex-flow: row nowrap; */
+  justify-content: space-between;
+  align-items: center;
+  /* overflow: auto visible; */
+  position: relative;
+  /* white-space: nowrap; */
+}
+
+.scroll-child {
+  height: 30px;
+
+  display: flex;
+}
+
+.scroll-left {
+  height: 30px;
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+
+}
+
+.kSTIeH {
+  height: 16px;
+  width: 1px;
+  background-color: rgb(207 214 228);
+  margin: 0px 16px;
+}
+
+.btnFake {
+  display: flex;
+  color: gray;
+  border-radius: 5px;
+  font-size: 13px;
+  font-weight: 600;
+  align-items: center;
+  text-align: 32px;
+  height: 32px;
+  background-color: rgb(223, 231, 247);
+  margin: 5px;
+  cursor: pointer;
+}
+
+#Watchlist {
+  line-height: 32px;
+  color: black;
+  margin: 0px;
+  padding: 2px;
+}
+
+.btnFake:hover {
+  color: black;
+  background-color: rgb(207 214 228);
+}
+
+#star1 {
+  display: flex;
+  padding-left: 5px;
+
+}
+
+.scroll-center {
+  height: 30px;
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+}
+
+#btnFake {
+  width: 110px;
+}
+
+.btnFake2 {
+  color: gray;
+  border-radius: 5px;
+  font-size: 13px;
+  font-weight: 600;
+  align-items: center;
+  text-align: 32px;
+  height: 32px;
+  background-color: white;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.btnFake2:hover {
+  background-color: rgb(207 214 228);
+}
+
+.showRowsContainer {
+  display: flex;
+  margin: 0px;
+  align-items: center;
+}
+
+.showRows {
+  color: gray;
+  margin: 0px;
+  line-height: 41.6px;
+  font-size: 13px;
+  font-weight: 400;
+  margin-right: 5px;
+}
+
+.select {
+  border-radius: 5px;
+  background-color: rgb(223, 231, 247);
+  width: 50px;
+  height: 20px;
+  line-height: 20px;
+  padding: 0px;
+  font-size: 20px;
+}
+
+.cmtBtn {
+  background-color: #5521b5 !important;
+  /* margin-top: 10px;
+  margin-bottom: 10px; */
+  border-radius: 10px;
+  border: 1pt solid #5521b5 !important;
+  outline: none;
+  list-style: none;
+  width: fit-content;
+  height: fit-content;
+  padding: 0px 34px;
+  font-weight: 500;
+  position: relative;
+  right: 0px;
+  margin-right: 0px !important;
+  margin: 0 auto;
+  margin-top: 8px
+}
+
+.coinTitle {
+  display: flex;
+  align-items: center;
+}
+
+.coinLogo {
+  height: 32px;
+  width: 32px;
+  margin: 5px;
+}
+
+.coin-name {
+  font-weight: 800;
+  margin: 5px;
+}
+
+.symbol {
+  border: 0.5px solid black;
+  height: fit-content;
+  width: fit-content;
+  border-radius: 3px;
+  padding: 1px 3px;
+  color: gray;
+  font-weight: 600;
+  margin: 7px;
+  background-color: #eff2f5;
+  align-items: center;
+}
+
+.fa-solid {
+  color: #000;
+  padding: 2px;
+
+}
+
+.star {
+  height: fit-content;
+  width: fit-content;
+  border: 0.5px solid black;
+  border-radius: 5px;
+  align-items: center;
+  margin: 5px;
+}
+
+.fa-arrow-up-from-bracket {
+  color: #000;
+  padding: 5px;
+}
+
+.share {
+  height: fit-content;
+  width: fit-content;
+  border: 0.5px solid black;
+  border-radius: 5px;
+  align-items: center;
+  margin: 8px;
+}
+
+.coinInfo2 {
+  display: flex;
+  width: 100vw;
+}
+
+.coinRank {
+  background-color: #808A9D;
+  font-size: 11px;
+  font-weight: 500;
+  height: fit-content;
+  width: fit-content;
+  padding: 3px 5px;
+  border-radius: 5px;
+  margin: 5px;
+}
+
+.type {
+  background-color: rgb(239 242 245);
+  color: rgb(88 102 126);
+  font-size: 11px;
+  font-weight: 500;
+  height: fit-content;
+  width: fit-content;
+  padding: 3px 9px;
+  border-radius: 5px;
+  margin: 5px;
+}
+
+.onWatchlist {
+  background-color: rgb(239 242 245);
+  color: rgb(88 102 126);
+  font-size: 11px;
+  font-weight: 500;
+  height: fit-content;
+  width: fit-content;
+  padding: 3px 9px;
+  border-radius: 5px;
+  margin: 5px;
+}
+
+.content {
+  padding: 0px;
+  margin-left: 5px;
+  display: flex;
+}
+
+.content1 {
+  display: flex;
+  color: rgb(128 138 157);
+  font-size: 11px;
+  font-weight: 600;
+  align-items: center;
+  height: fit-content;
+  width: fit-content;
+  background-color: rgb(239 242 245);
+  border-radius: 5px;
+  padding: 5px 9px;
+  margin: 5px;
+}
+
+.content1:hover {
+  color: white;
+  background-color: gray;
+}
+
+#content1Name {
+  text-decoration: line-through;
+  margin: 0px;
+}
+
+.fa-up-right-from-square {
+  margin-top: 4px !important;
+}
+
+.tags {
+  color: rgb(88 102 126);
+  font-size: 11px;
+  font-weight: 500;
+  margin: 0px;
+}
+
+#contentName {
+  margin-bottom: 0px !important;
+}
+
+.coinInfo {
+  display: flex;
+  justify-content: space-between;
+  margin: 0px;
+}
+
+.coinInfoCenter {
+  width: 28vw !important;
+}
+
+.priceTitle {
+  color: rgb(128 138 157);
+  margin: 0px;
+}
+
+.coinInfoLeft {
+  width: 28vw;
+}
+
+.priceBody {
+  display: flex;
+  align-items: center;
+}
+
+.pricePercent {
+  font-size: 14px;
+  font-weight: 600;
+  background-color: rgb(22 199 132);
+  color: white;
+  box-sizing: border-box;
+  height: fit-content;
+  width: fit-content;
+  padding: 2px 10px;
+  border-radius: 5px;
+  margin-bottom: 7px;
+  margin-left: 5px;
+}
+
+#caretInBtn {
+  color: white;
+}
+
+.priceValue2 {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgb(128 138 157);
+}
+
+.pricePercent2 {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgb(22 199 132);
+  margin-left: 5px;
+  ;
+}
+
+.fa-caret-up {
+  color: rgb(22 199 132);
+}
+
+.low {
+  color: rgb(128 138 157);
+}
+
+.price {
+  font-size: 12px;
+  font-weight: 600;
+  margin-left: 5px;
+}
+
+.coinInfoRight {
+  display: flex;
+}
+
+.btnCoinRight {
+  width: fit-content;
+  height: fit-content;
+  padding: 3px 9px;
+  background-color: rgb(108 43 217);
+  margin: 5px;
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: 600;
+  margin-top: 20px;
+}
+
+.hideContainer {
+  display: flex;
+
+  right: 10px;
+  margin-left: 600px;
+}
+
+.startsItemPrice {
+  margin-bottom: 5px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.statsBlockInnerTitle {
+  color: rgb(128 138 157);
+  font-size: 12px;
+  font-weight: 500
+}
+
+.statsFooter1 {
+  color: #58667E;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.statsFooter2 {
+  font-size: 12px;
+  font-weight: 500;
+  margin-left: 10px
+}
+
+.statsBlock {
+  padding-left: 50px;
+  align-items: center;
+  border-inline-end: 1px solid #eff2f5;
+  padding-right: 10px;
+}
+
+.tBody {
+  border-inline-width: 1px solid #eff2f5;
+}
+
+.routerSwitch {
+  display: flex;
+  border: 1px solid #eff2f5;
+}
+
+.routerBtn {
+  height: fit-content;
+  width: fit-content;
+  padding: 1px 5px;
+  color: #000;
+  border-radius: 5px;
+  margin: 5px;
+  font-size: 14px;
+  font-weight: 600;
+
+}
+
+.routerBtn:hover {
+  color: white;
+  background-color: rgb(108 43 217);
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

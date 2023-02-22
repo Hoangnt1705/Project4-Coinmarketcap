@@ -1,5 +1,5 @@
 function MoreInfo() {
-    return(
+    return (
         <>
         </>
     )

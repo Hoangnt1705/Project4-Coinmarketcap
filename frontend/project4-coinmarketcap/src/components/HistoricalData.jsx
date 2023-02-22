@@ -1,5 +1,5 @@
 function HistoricalData() {
-    return(
+    return (
         <>
         </>
     )
