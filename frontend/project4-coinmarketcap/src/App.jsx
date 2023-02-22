@@ -4,7 +4,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Dropdown from 'react-bootstrap/Dropdown';
 import { Button } from 'react-bootstrap';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
-
 import Socket from './components/Socket';
 import SlideTbl from './components/SlideTbl';
 import PostComponent from './components/PostComponent';
@@ -15,7 +14,13 @@ import { getFirestore, collection, addDoc, doc, setDoc, updateDoc, getDoc, serve
 import SimpleLineChart from './components/SimpleLineChart'
 import Header1 from './components/Header1';
 import Categories from './components/Categories';
-
+import Page from './components/Page';
+import Overview from './components/Overview';
+import Markets from './components/Markets';
+import HistoricalData from './components/HistoricalData';
+import News from './components/News';
+import PriceEstimates from './components/PriceEstimates';
+import MoreInfo from './components/MoreInfo';
 
 let App = (props) => {
   const firebaseConfig = {
@@ -139,6 +144,13 @@ let App = (props) => {
           </header>
           {/* Run block */}
           <Routes>
+            <Route path="/overview" element={<Overview />} />
+            <Route path='/markets' element={<Markets />} />
+            <Route path='/historical-data' element={<HistoricalData />} />
+            <Route path='/news' element={<News />} />
+            <Route path='/price-estimates' element={<PriceEstimates />} />
+            <Route path='/more-info' element={<MoreInfo />} />
+            <Route path='/page' element={<Page />} />
             <Route path="/categories" element={<Categories cryptocurrencyCategories={cryptocurrencyCategories} formatter={formatter} />} />
             <Route path="/" element={
               <div>
