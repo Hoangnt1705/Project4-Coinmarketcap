@@ -1,4 +1,4 @@
-import Header1 from "./Header1"
+import Header1 from "./Header"
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 let Page = () => {
     return (

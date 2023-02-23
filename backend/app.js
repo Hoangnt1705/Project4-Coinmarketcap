@@ -16,6 +16,53 @@ let requests = 0;
 const MAX_REQUESTS_PER_SECOND = 1;
 app.use(morgan('combined'));
 app.use(cors());
+
+
+
+// io.on('connection', (socket) => {
+//     setInterval(() => {
+//         axios.get('https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest', {
+//             headers: {
+//                 'X-CMC_PRO_API_KEY': API_KEY,
+//             },
+//         })
+//             .then(response => {
+//                 let { data } = response.data;
+//                 console.log('Client connected');
+//                 socket.emit('cryptocurrency-listings', data);
+
+
+//             })
+//             .catch(err => console.log(err));
+//     }, 200000);
+
+//     axios.get('https://pro-api.coinmarketcap.com/v1/global-metrics/quotes/latest', {
+//         headers: {
+//             'X-CMC_PRO_API_KEY': API_KEY,
+//         },
+//     })
+//         .then(response => {
+//             setInterval(() => {
+//                 let { data } = response.data;
+//                 socket.emit('global-metrics-quotes', data);
+//             }, 2000000);
+//         })
+//         .catch(err => console.log(err));
+//     axios.get('https://pro-api.coinmarketcap.com/v1/cryptocurrency/categories', {
+//         headers: {
+//             'X-CMC_PRO_API_KEY': API_KEY,
+//         },
+//     })
+//         .then(response => {
+//             setInterval(() => {
+//                 let { data } = response;
+//                 socket.emit('cryptocurrency-categories', data);
+//             }, 2000000);
+//         })
+//         .catch(err => console.log(err));
+// });
+
+
 io.on('connection', (socket) => {
     console.log('Client connected');
     function sendRequest() {
@@ -82,11 +129,11 @@ io.on('connection', (socket) => {
                     })
                     .catch(err => console.log(err));
                 console.log("aaaa");
-            }, 2000000);
+            }, 30000);
         }
     }
     sendRequest();
-    setInterval(sendRequest, 20000000);
+    setInterval(sendRequest, 30000);
 
 
 });

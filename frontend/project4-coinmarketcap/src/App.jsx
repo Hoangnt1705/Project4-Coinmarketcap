@@ -12,7 +12,7 @@ import { initializeApp } from "firebase/app";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 import { getFirestore, collection, addDoc, doc, setDoc, updateDoc, getDoc, serverTimestamp, field, arrayUnion, arrayRemove } from "firebase/firestore";
 import SimpleLineChart from './components/SimpleLineChart'
-import Header1 from './components/Header1';
+import Header1 from './components/Header';
 import Categories from './components/Categories';
 import Page from './components/Page';
 import Overview from './components/Overview';
@@ -38,13 +38,18 @@ let App = (props) => {
   const [cryptocurrencyCategories, setCryptocurrencyCategories] = useState([]);
   const [currentUser, setCurrentUser] = useState('');
   const [cryptocurrencyListings, setCryptocurrencyListings] = useState([]);
-
+  const [listingsPriceIcon, setListingsPriceIcon] = useState('');
+  const [listingsPercentChange1HIcon, setListingsPercentChange1HIcon] = useState('');
+  const [listingsPercentChange24HIcon, setListingsPercentChange24HIcon] = useState('');
+  const [listingsPercentChange7DIcon, setListingsPercentChange7DIcon] = useState('');
   const [listingsPriceColors, setListingsPriceColors] = useState('');
   const [listingsPercentChange1HColors, setListingsPercentChange1HColors] = useState('');
   const [listingsPercentChange24HColors, setListingsPercentChange24HColors] = useState('');
   const [listingsPercentChange7DColors, setListingsPercentChange7DColors] = useState('');
-
-  let check = (newCryptocurrencyListings) => {
+  let compireTotalChange = (newTotalMarketCapYesterdayPercentageChange) => {
+    let newTotalMarketCapYesterdayPercentageChangeColor = [];
+  }
+  let compireMarkets = (newCryptocurrencyListings) => {
     const newListingsPriceColors = [];
     const newListingsPercentChange1HColors = [];
     const newListingsPercentChange24HColors = [];
@@ -56,59 +61,71 @@ let App = (props) => {
     for (let i = 0; i < cryptocurrencyListings.length; i++) {
       if (cryptocurrencyListings[i].quote.USD.price > newCryptocurrencyListings[i].quote.USD.price) {
         newListingsPriceColors.push('#16c784');
-        newListingsPriceIcons.push('')
+        newListingsPriceIcons.push('fa-sharp fa-solid fa-arrow-up');
       }
       else if (cryptocurrencyListings[i].quote.USD.price < newCryptocurrencyListings[i].quote.USD.price) {
         newListingsPriceColors.push('#ea3943');
+        newListingsPriceIcons.push('fa-sharp fa-solid fa-arrow-down');
       }
       else {
         newListingsPriceColors.push(listingsPriceColors[i]);
+        newListingsPriceIcons.push(listingsPriceIcon[i]);
       }
       //
       if (cryptocurrencyListings[i].quote.USD.percent_change_1h > newCryptocurrencyListings[i].quote.USD.percent_change_1h) {
         newListingsPercentChange1HColors.push('#16c784');
+        newListingsPercentChange1HIcons.push('fa-sharp fa-solid fa-arrow-up');
       }
       else if (cryptocurrencyListings[i].quote.USD.price < newCryptocurrencyListings[i].quote.USD.price) {
         newListingsPercentChange1HColors.push('#ea3943');
+        newListingsPercentChange1HIcons.push('fa-sharp fa-solid fa-arrow-down');
       }
       else {
         newListingsPercentChange1HColors.push(listingsPercentChange1HColors[i]);
+        newListingsPercentChange1HIcons.push(listingsPercentChange1HIcon[i]);
       }
       //
       if (cryptocurrencyListings[i].quote.USD.percent_change_24h > newCryptocurrencyListings[i].quote.USD.percent_change_24h) {
         newListingsPercentChange24HColors.push('#16c784');
+        newListingsPercentChange24HIcons.push('fa-sharp fa-solid fa-arrow-up');
       }
       else if (cryptocurrencyListings[i].quote.USD.percent_change_24h < newCryptocurrencyListings[i].quote.USD.percent_change_24h) {
         newListingsPercentChange24HColors.push('#ea3943');
+        newListingsPercentChange24HIcons.push('fa-sharp fa-solid fa-arrow-down');
       }
       else {
         newListingsPercentChange24HColors.push(listingsPercentChange24HColors[i]);
+        newListingsPercentChange24HIcons.push(listingsPercentChange24HIcon[i]);
       }
       //
       if (cryptocurrencyListings[i].quote.USD.percent_change_7d > newCryptocurrencyListings[i].quote.USD.percent_change_7d) {
         newListingsPercentChange7DColors.push('#16c784');
+        newListingsPercentChange7DIcons.push('fa-sharp fa-solid fa-arrow-up');
       }
       else if (cryptocurrencyListings[i].quote.USD.percent_change_7d < newCryptocurrencyListings[i].quote.USD.percent_change_7d) {
         newListingsPercentChange7DColors.push('#ea3943');
+        newListingsPercentChange7DIcons.push('fa-sharp fa-solid fa-arrow-down');
       }
       else {
         newListingsPercentChange7DColors.push(listingsPercentChange7DColors[i]);
+        newListingsPercentChange7DIcons.push(listingsPercentChange7DIcon[i]);
       }
     };
     setListingsPriceColors(newListingsPriceColors);
     setListingsPercentChange1HColors(newListingsPercentChange1HColors);
     setListingsPercentChange24HColors(newListingsPercentChange24HColors);
     setListingsPercentChange7DColors(newListingsPercentChange7DColors);
+    setListingsPriceIcon(newListingsPriceIcons);
+    setListingsPercentChange1HIcon(newListingsPercentChange1HIcons);
+    setListingsPercentChange24HIcon(newListingsPercentChange24HIcons);
+    setListingsPercentChange7DIcon(newListingsPercentChange7DIcons);
     setCryptocurrencyListings(newCryptocurrencyListings);
-    console.log(listingsPriceColors);
-    console.log(cryptocurrencyListings);
   };
   useEffect(() => {
     Socket.on('cryptocurrency-listings', (latest) => {
-      const newCryptocurrencyListings = latest
-      setCryptocurrencyListings(newCryptocurrencyListings)
-      check(newCryptocurrencyListings);
-
+      const newCryptocurrencyListings = latest;
+      setCryptocurrencyListings(newCryptocurrencyListings);
+      compireMarkets(newCryptocurrencyListings);
     });
     const auth = getAuth();
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -116,7 +133,9 @@ let App = (props) => {
     });
     unsubscribe();
     Socket.on('global-metrics-quotes', (latest) => {
-      setDataLatest(latest);
+      const newTotalMarketCapYesterdayPercentageChange = latest;
+      setDataLatest(newTotalMarketCapYesterdayPercentageChange);
+      compireTotalChange(newTotalMarketCapYesterdayPercentageChange);
     });
     Socket.on('cryptocurrency-categories', (latest) => {
       setCryptocurrencyCategories(latest);
@@ -124,7 +143,7 @@ let App = (props) => {
     return () => {
       Socket.off('global-metrics-quotes');
     };
-  });
+  },);
 
   const formatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
@@ -154,12 +173,19 @@ let App = (props) => {
             <Route path="/categories" element={<Categories cryptocurrencyCategories={cryptocurrencyCategories} formatter={formatter} />} />
             <Route path="/" element={
               <div>
-                <section className="bg-gray-50 dark:bg-gray-800">
-                  <div className="max-w-screen-xl px-4 py-8 mx-auto space-y-12 lg:space-y-20 lg:py-24 lg:px-6">
+                <section className="bg-gray-50 dark:bg-gray-800" >
+                  <div className="max-w-screen-xl px-4 py-8 mx-auto space-y-12 lg:space-y-20 lg:py-24 lg:px-6" >
                     <h3 style={{ fontWeight: "700" }}>Today's Cryptocurrency Price by Market Cap</h3>
                     <span style={{ color: "rgb(88, 102, 126)", marginTop: "0" }}>The global crypto market cap is {dataLatest ? formatter.format(dataLatest.quote.USD.total_market_cap).substring(0, 5) + "T" : "..."}
                       , a {dataLatest ? dataLatest.quote.USD.total_market_cap_yesterday_percentage_change.toFixed(2) : "..."} increase over the last day. </span>
                     <a href="" className="readMore" style={{ color: "rgb(128, 138, 157)", fontSize: "17px", textDecoration: "underline !important" }}>Read More</a>
+                  </div>
+                  <div className="max-w-screen-xl px-4 py-8 mx-auto space-y-12 lg:space-y-20 lg:py-24 lg:px-6" style={{ marginTop: "-80px" }}>
+                    <label className="switch">
+                      <span className="highLightBtn">Highlights</span>
+                      <input type="checkbox" defaultChecked />
+                      <span className="slider round" />
+                    </label>
                   </div>
                 </section>
                 {/* Start block */}
@@ -172,31 +198,12 @@ let App = (props) => {
                     </div>
                   </div>
                 </section>
-                <section className="bg-white dark:bg-gray-900">
-                  <div className="grid max-w-screen-xl px-4 pt-20 pb-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 lg:pt-28">
-                    <div className="mr-auto place-self-center lg:col-span-7">
-                      <h1 className="max-w-2xl mb-4 text-4xl font-extrabold leading-none tracking-tight md:text-5xl xl:text-6xl dark:text-white">Building digital <br />products &amp; brands.</h1>
-                      <div className="space-y-4 sm:flex sm:space-y-0 sm:space-x-4">
-                        <a href="https://github.com/themesberg/landwind" className="inline-flex items-center justify-center w-full px-5 py-3 text-sm font-medium text-center text-gray-900 border border-gray-200 rounded-lg sm:w-auto hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
-                          <svg className="w-4 h-4 mr-2 text-gray-500 " xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512">{/* Font Awesome Pro 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) */}<path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z" /></svg> View on GitHub
-                        </a>
-                        <a href="https://www.figma.com/community/file/1125744163617429490" className="inline-flex items-center justify-center w-full px-5 py-3 mb-2 mr-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:w-auto focus:outline-none hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800  dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
-                          <svg className="w-4 h-4 mr-2" id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 300" width={1667} height={2500}><style type="text/css" dangerouslySetInnerHTML={{ __html: ".st0{fill:#0acf83}.st1{fill:#a259ff}.st2{fill:#f24e1e}.st3{fill:#ff7262}.st4{fill:#1abcfe}" }} /><title>Figma.logo</title><desc>Created using Figma</desc><path id="path0_fill" className="st0" d="M50 300c27.6 0 50-22.4 50-50v-50H50c-27.6 0-50 22.4-50 50s22.4 50 50 50z" /><path id="path1_fill" className="st1" d="M0 150c0-27.6 22.4-50 50-50h50v100H50c-27.6 0-50-22.4-50-50z" /><path id="path1_fill_1_" className="st2" d="M0 50C0 22.4 22.4 0 50 0h50v100H50C22.4 100 0 77.6 0 50z" /><path id="path2_fill" className="st3" d="M100 0h50c27.6 0 50 22.4 50 50s-22.4 50-50 50h-50V0z" /><path id="path3_fill" className="st4" d="M200 150c0 27.6-22.4 50-50 50s-50-22.4-50-50 22.4-50 50-50 50 22.4 50 50z" /></svg> Get Figma file
-                        </a>
-                      </div>
-                    </div>
-                    <div className="hidden lg:mt-0 lg:col-span-5 lg:flex">
-                      <img src="./images/hero.png" alt="hero image" />
-                    </div>
-                  </div>
-                </section>
-
                 {/* End block */}
                 {/* Start block */}
 
                 <section className="bg-white dark:bg-gray-900">
                   <div className="max-w-screen-xl px-4 py-8 mx-auto space-y-12 lg:space-y-20 lg:py-24 lg:px-6">
-                    <div className="relative overflow-x-auto shadow-md sm:rounded-lg" style={{ marginBottom: "-100px" }}>
+                    <div className="relative overflow-x-auto shadow-md sm:rounded-lg" style={{ marginBottom: "-100px", marginLeft: "-50px" }}>
                       <div className='scroll-indicator'>
                         <div className='scroll-child'>
                           <div className='scroll-left'>
@@ -293,13 +300,13 @@ let App = (props) => {
                                 {formatter.format(element.quote.USD.price)}
                               </td>
                               <td className="px-6 py-4 boldListingCrypto" style={{ color: listingsPercentChange1HColors[index] }}>
-                                {`${element.quote.USD.percent_change_1h.toFixed(2)}%`}
+                                <i style={{ color: listingsPercentChange1HColors[index] }} class={listingsPercentChange1HIcon[index]}></i>{`${element.quote.USD.percent_change_1h.toFixed(2)}%`}
                               </td>
                               <td className="px-6 py-4 boldListingCrypto" style={{ color: listingsPercentChange24HColors[index] }}>
-                                {`${element.quote.USD.percent_change_24h.toFixed(2)}%`}
+                                <i style={{ color: listingsPercentChange24HColors[index] }} class={listingsPercentChange24HIcon[index]}></i>{`${element.quote.USD.percent_change_24h.toFixed(2)}%`}
                               </td>
                               <td className="px-6 py-4 boldListingCrypto" style={{ color: listingsPercentChange7DColors[index] }}>
-                                {`${element.quote.USD.percent_change_7d.toFixed(2)}%`}
+                                <i style={{ color: listingsPercentChange7DColors[index] }} class={listingsPercentChange7DIcon[index]}></i>{`${element.quote.USD.percent_change_7d.toFixed(2)}%`}
                               </td>
                               <td className="px-6 py-4 boldListingCrypto">
                                 {formatter.format(element.quote.USD.market_cap)}
@@ -308,7 +315,7 @@ let App = (props) => {
                                 {formatter.format(element.quote.USD.volume_24h)}
                               </td>
                               <td className="px-6 py-4 boldListingCrypto">
-                                {`${element.circulating_supply} ${element.symbol}`}
+                                {`${parseFloat(element.circulating_supply)} ${element.symbol}`}
                               </td>
                               <td className="px-6 py-4 boldListingCrypto">
                                 19,292,012 BTC
@@ -321,7 +328,15 @@ let App = (props) => {
                   </div>
                 </section>
                 {/* End block */}
-
+                {/* <div className="box">
+                  <div>
+                    <span><img src alt="" /></span>
+                    <span >hello </span>
+                    <span />
+                    <span />
+                    <span />
+                  </div>
+                </div> */}
                 {/* Start block */}
                 <section className="bg-gray-50 dark:bg-gray-800">
                   <div className="max-w-screen-xl px-4 py-8 mx-auto space-y-12 lg:space-y-20 lg:py-24 lg:px-6">
@@ -742,7 +757,7 @@ let App = (props) => {
 
 
 
-    
+
 
 
 

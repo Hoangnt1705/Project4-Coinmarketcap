@@ -177,6 +177,12 @@ let Header1 = (props) => {
               </svg>
             </a>
           </div>
+          <div className="boxSearch">
+            <div className="container-1">
+              <span className="icon"><i className="fa fa-search" /></span>
+              <input type="search" id="search" placeholder="Search..." />
+            </div>
+          </div>
 
           <Navbar bg="light" id="bg-light" expand="lg">
             <Container>

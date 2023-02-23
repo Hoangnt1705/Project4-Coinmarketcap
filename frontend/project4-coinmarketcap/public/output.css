@@ -3337,17 +3337,6 @@ a {
   color: #5521b5;
 }
 
-
-.bg-white-detail {
-  border-bottom: 1px solid var(--border-color);
-  font-size: 12px;
-  font-weight: 500;
-  position: relative;
-  padding: 8px clamp(16px, (100vw - 1370px) / 2, 9999px);
-  z-index: 931;
-  white-space: nowrap;
-}
-
 .hoverRow:hover {
   background: rgb(238, 246, 245) !important;
   padding: 0px 5px;
@@ -4197,6 +4186,9 @@ input[type="radio"] {
   margin: 0px;
   justify-content: space-around;
   background-color: rgb(249 250 251);
+  background: #e0e0e0;
+  box-shadow: 10px 20px 25px #bebebe, -30px -20px 120px #ffffff;
+  border-radius: 20px;
 }
 
 .slide-container {
@@ -4663,7 +4655,7 @@ hr {
 }
 
 .btnFake2:hover {
-  background-color: rgb(207 214 228);
+  background-color: #e5e8ef;
 }
 
 .showRowsContainer {
@@ -4693,8 +4685,6 @@ hr {
 
 .cmtBtn {
   background-color: #5521b5 !important;
-  /* margin-top: 10px;
-  margin-bottom: 10px; */
   border-radius: 10px;
   border: 1pt solid #5521b5 !important;
   outline: none;
@@ -5217,6 +5207,205 @@ tr {
 .routerBtn:hover {
   color: white;
   background-color: rgb(108 43 217);
+}
+
+.bg-white {
+  --bs-bg-opacity: 1;
+  background-color: rgba(var(--bs-white-rgb), var(--bs-bg-opacity)) !important;
+  border-bottom: 0.5px solid #efeded
+}
+
+.box {
+  position: absolute;
+  top: calc(50% - 150px);
+  left: calc(50% - 150px);
+  transform: perspective(1000px) rotateY(0deg);
+  width: 350px;
+  height: 330px;
+  transform-style: preserve-3d;
+  z-index: 10;
+}
+
+.box div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  animation: animate 5s linear infinite;
+}
+
+.box div span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(0deg, #f1f1f1, #bbb, #f1f1f1);
+  border-radius: 20px;
+}
+
+.box div span:nth-child(1) {
+  transform: rotateX(0deg)
+}
+
+.box div span:nth-child(2) {
+  transform: rotateX(45deg)
+}
+
+.box div span:nth-child(3) {
+  transform: rotateX(-45deg)
+}
+
+.box div span:nth-child(4) {
+  transform: rotateX(90deg)
+}
+
+.switch {
+  position: absolute;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  margin-left: 1167px;
+  margin-top: -40px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked+.slider {
+  background-color: rgb(108 43 217);
+}
+
+input:focus+.slider {
+  box-shadow: 0 0 1px rgb(108 43 217);
+}
+
+input:checked+.slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.highLightBtn {
+  font-weight: 500;
+  margin-left: -90px;
+  color: #58667e;
+  font-size: 14px;
+}
+
+.boxSearch {
+  width: 300px;
+  height: 50px;
+}
+
+.container-1 {
+  width: 300px;
+  vertical-align: middle;
+  white-space: nowrap;
+  position: relative;
+}
+
+.container-1 input#search {
+  width: 300px;
+  height: 50px;
+  background: #e5e8ef;
+  border: none;
+  font-size: 10pt;
+  float: left;
+  color: #63717f;
+  padding-left: 45px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+
+  -webkit-transition: background .55s ease;
+  -moz-transition: background .55s ease;
+  -ms-transition: background .55s ease;
+  -o-transition: background .55s ease;
+  transition: background .55s ease;
+}
+
+.container-1 input#search::-webkit-input-placeholder {
+  color: #65737e;
+}
+
+.container-1 input#search:-moz-placeholder {
+  /* Firefox 18- */
+  color: #65737e;
+}
+
+.container-1 input#search::-moz-placeholder {
+  /* Firefox 19+ */
+  color: #65737e;
+}
+
+.container-1 input#search:-ms-input-placeholder {
+  color: #65737e;
+}
+
+.container-1 .icon {
+  position: absolute;
+  top: 50%;
+  margin-left: 17px;
+  margin-top: 17px;
+  z-index: 1;
+  color: #4f5b66;
+}
+
+.container-1 input#search:hover,
+.container-1 input#search:focus,
+.container-1 input#search:active {
+  outline: none;
+  background: #ffffff;
+}
+
+@keyframes animate {
+  0% {
+    transform: perspective(1000px) rotateX(0deg)
+  }
+
+  100% {
+    transform: perspective(1000px) rotateX(-359deg)
+  }
 }
 
 @tailwind base;
