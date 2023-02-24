@@ -18,11 +18,13 @@ let PostComponent = (props) => {
                     <button className="bearish">Bearish</button>
                 </div>
             </div>
+            <div className='posComponentBody'>
             <form>
                 <input className="cmt" type="text" placeholder="Select a hashtag for your Community post" />
                 <button className='cmtBtn'>POST
                 </button>
             </form>
+            </div>
         </div>
 
     )
