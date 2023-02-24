@@ -1,6 +1,7 @@
 import Header1 from "./Header"
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-let Page = () => {
+import { BrowserRouter as Router, Routes, Route, Link, Outlet } from "react-router-dom";
+let Page = (props) => {
+    let { cryptocurrencyListings } = props;
     return (
         <>
             <div className='tBody '>
@@ -93,98 +94,103 @@ let Page = () => {
                         <button className='btnCoinRight'>Buy</button>
                         <button className='btnCoinRight'>Exchange</button>
                         <button className='btnCoinRight'>Gaming</button>
-                        <button className='btnCoinRight'>Earn Crypto</button>
+                        <button className='btnCoinRight' id="earn">Earn Crypto</button>
                     </div>
                 </div>
-                <div className='hideContainer'>
-                    <div className='statsBlock'>
-                        <div className='statsBlockInner'>
-                            <span className='statsBlockInnerTitle'>Market Cap</span>
-                            <div className='statsItemRight'>
-                                <p className='startsItemPrice'>$480,317,709,927</p>
-                                <span className='pricePercent2'>
-                                    <i className="fa-solid fa-caret-up"></i>17,1%
-                                </span>
+                <div className='coinInfo items-center max-w-screen-xl px-4 py-8 mx-auto lg:grid lg:grid-cols-4 lg:gap-16 xl:gap-24 lg:py-24 lg:px-6'>
+                    <div className='hideContainer'>
+                        <div className='statsBlock'>
+                            <div className='statsBlockInner'>
+                                <span className='statsBlockInnerTitle'>Market Cap</span>
+                                <div className='statsItemRight'>
+                                    <p className='startsItemPrice'>$480,317,709,927</p>
+                                    <span className='pricePercent2'>
+                                        <i className="fa-solid fa-caret-up"></i>17,1%
+                                    </span>
+                                </div>
+                            </div>
+                            <div className='statsBlockInner2'>
+                                <span className='statsFooter1'>24h Volume / Market Cap</span>
+                                <span className='statsFooter2'>0.0572</span>
                             </div>
                         </div>
-                        <div className='statsBlockInner2'>
-                            <span className='statsFooter1'>24h Volume / Market Cap</span>
-                            <span className='statsFooter2'>0.0572</span>
-                        </div>
-                    </div>
 
-                    <div className='statsBlock'>
-                        <div className='statsBlockInner'>
-                            <span className='statsBlockInnerTitle'>Fully Diluted Market Cap</span>
-                            <div className='statsItemRight'>
-                                <p className='startsItemPrice'>$522,717,374,269</p>
-                                <span className='pricePercent2'>
-                                    <i className="fa-solid fa-caret-up"></i>17,0%
-                                </span>
+                        <div className='statsBlock'>
+                            <div className='statsBlockInner'>
+                                <span className='statsBlockInnerTitle'>Fully Diluted Market Cap</span>
+                                <div className='statsItemRight'>
+                                    <p className='startsItemPrice'>$522,717,374,269</p>
+                                    <span className='pricePercent2'>
+                                        <i className="fa-solid fa-caret-up"></i>17,0%
+                                    </span>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
 
-                    <div className='statsBlock'>
-                        <div className='statsBlockInner'>
-                            <span className='statsBlockInnerTitle'>Volume</span>
-                            <div className='statsItemRight'>
-                                <p className='startsItemPrice'>$27,469,226,683</p>
-                                <span className='pricePercent2'>
-                                    <i className="fa-solid fa-caret-up"></i>5,14%
-                                </span>
+                        <div className='statsBlock'>
+                            <div className='statsBlockInner'>
+                                <span className='statsBlockInnerTitle'>Volume</span>
+                                <div className='statsItemRight'>
+                                    <p className='startsItemPrice'>$27,469,226,683</p>
+                                    <span className='pricePercent2'>
+                                        <i className="fa-solid fa-caret-up"></i>5,14%
+                                    </span>
+                                </div>
+                            </div>
+                            <div className='statsBlockInner2'>
+                                <span className='statsFooter1'>CEX Vol</span>
+                                <span className='statsFooter2'>$27,548,485,365</span>
+                            </div>
+                            <div className='statsBlockInner2'>
+                                <span className='statsFooter1'>DEX Vol</span>
+                                <span className='statsFooter2'>$7,569,760</span>
                             </div>
                         </div>
-                        <div className='statsBlockInner2'>
-                            <span className='statsFooter1'>CEX Vol</span>
-                            <span className='statsFooter2'>$27,548,485,365</span>
-                        </div>
-                        <div className='statsBlockInner2'>
-                            <span className='statsFooter1'>DEX Vol</span>
-                            <span className='statsFooter2'>$7,569,760</span>
-                        </div>
-                    </div>
 
-                    <div className='statsBlock'>
-                        <div className='statsBlockInner'>
-                            <span className='statsBlockInnerTitle'>Circulating Supply</span>
-                            <div className='statsItemRight'>
-                                <span className='startsItemPrice'>19,297,418 BTC</span>
-                                <span className='pricePercent2'>
-                                    <i className="fa-solid fa-caret-up"></i>17,1%
-                                </span>
+                        <div className='statsBlock'>
+                            <div className='statsBlockInner'>
+                                <span className='statsBlockInnerTitle'>Circulating Supply</span>
+                                <div className='statsItemRight'>
+                                    <span className='startsItemPrice'>19,297,418 BTC</span>
+                                    <span className='pricePercent2'>
+                                        <i className="fa-solid fa-caret-up"></i>17,1%
+                                    </span>
+                                </div>
+                            </div>
+                            <div className='statsBlockInner2'>
+                                <span className='statsFooter1'>24h Volume / Market Cap</span>
+                                <span className='statsFooter2'>0.0572</span>
                             </div>
                         </div>
-                        <div className='statsBlockInner2'>
-                            <span className='statsFooter1'>24h Volume / Market Cap</span>
-                            <span className='statsFooter2'>0.0572</span>
-                        </div>
+
                     </div>
 
                 </div>
-            </div>
-            <div className='routerSwitch'>
-                <Link to="/Overview">
-                    <a className="routerBtn bg-transparent login-register hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded" style={{ borderRadius: "8px" }}>Overview</a>
-                </Link>
-                <Link to="/Markets">
-                    <a className="routerBtn bg-transparent login-register hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded" style={{ borderRadius: "8px" }}>Markets</a>
-                </Link>
-                <Link to="/HistoricalData">
-                    <a className="routerBtn bg-transparent login-register hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded" style={{ borderRadius: "8px" }}>Historical Data</a>
-                </Link>
-                <Link to="/News">
-                    <a className="routerBtn bg-transparent login-register hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded" style={{ borderRadius: "8px" }}>News</a>
-                </Link>
-                <Link to="/PriceEstimates">
-                    <a className="routerBtn bg-transparent login-register hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded" style={{ borderRadius: "8px" }}>Price Estimates</a>
-                </Link>
-                <Link to="/MoreInfo">
-                    <a className="routerBtn" style={{ borderRadius: "8px" }}>More Info</a>
-                </Link>
+                <div className='coinInfo items-center max-w-screen-xl px-4 py-8 mx-auto lg:grid lg:grid-cols-4 lg:gap-16 xl:gap-24 lg:py-24 lg:px-6'>
+                    <div className='routerSwitch'>
+                        <Link to="/page/overview">
+                            <a className="routerBtn" style={{ borderRadius: "8px" }}>Overview</a>
+                        </Link>
+                        <Link to="/page/markets">
+                            <a className="routerBtn" style={{ borderRadius: "8px" }}>Markets</a>
+                        </Link>
+                        <Link to="/page/historical-data">
+                            <a className="routerBtn" style={{ borderRadius: "8px" }}>Historical Data</a>
+                        </Link>
+                        <Link to="/page/news">
+                            <a className="routerBtn" style={{ borderRadius: "8px" }}>News</a>
+                        </Link>
+                        <Link to="/page/price-estimates">
+                            <a className="routerBtn" style={{ borderRadius: "8px" }}>Price Estimates</a>
+                        </Link>
+                        <Link to="/page/more-info">
+                            <a className="routerBtn" style={{ borderRadius: "8px" }}>More Info</a>
+                        </Link>
+                        <Outlet/>
+                    </div>
 
-
+                </div>
             </div>
 
         </>
