@@ -86,7 +86,6 @@ io.on('connection', (socket) => {
             })
                 .then(response => {
                     let { data } = response.data;
-                    console.log(data);
                     socket.emit('cryptocurrency-listings', data);
 
                 })
@@ -129,12 +128,11 @@ io.on('connection', (socket) => {
                     })
                     .catch(err => console.log(err));
                 console.log("aaaa");
-            }, 30000);
+            }, 30000000);
         }
     }
     sendRequest();
-    setInterval(sendRequest, 30000);
-
+    setInterval(sendRequest, 30000000);
 
 });
 

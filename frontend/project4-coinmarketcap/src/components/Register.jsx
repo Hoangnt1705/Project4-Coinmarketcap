@@ -3,10 +3,11 @@ import { useForm } from 'react-hook-form';
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Data } from './Data';
+import Footer from './Footer';
 
 let RegisterPage = (props) => {
-    let { auth, createUserWithEmailAndPassword, db, collection, addDoc, doc, setDoc, updateDoc,
-        getDoc, serverTimestamp, arrayUnion, arrayRemove } = props;
+    let { auth, createUserWithEmailAndPassword, db, doc, updateDoc, arrayUnion } = props;
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     let registerAuthentication = (email, password) => {
@@ -32,8 +33,8 @@ let RegisterPage = (props) => {
             })
             .catch(error => {
                 toast(error.message)
-            })
-    }
+            });
+    };
 
     return (
         <div className='page'>

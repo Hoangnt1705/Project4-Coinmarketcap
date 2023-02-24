@@ -1,6 +1,4 @@
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import LoginPage from './LoginPage';
-import Register from './Register';
 import { getFirestore, collection, addDoc } from "firebase/firestore";
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
@@ -9,8 +7,19 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 
 
 let Header1 = (props) => {
-  let { dataLatest, auth, formatter, db, signInWithEmailAndPassword, createUserWithEmailAndPassword, collection, addDoc, doc, setDoc, updateDoc,
-    getDoc, serverTimestamp, arrayUnion, arrayRemove, currentUser } = props;
+  let { dataLatest, auth, formatter, currentUser, signOut } = props;
+  let logOut = () => {
+    signOut(auth)
+      .then(() => {
+        // sign out successful.
+        console.log('User has been signed out.');
+        window.location.href = 'http://localhost:3006';
+      })
+      .then(error => {
+        // An error happened.
+        console.log(error);
+      })
+  }
   return (
     <>
       <nav className="bg-white bg-white-detail border-gray-200 py-2.5 dark:bg-gray-900">
@@ -94,7 +103,6 @@ let Header1 = (props) => {
               </div>
             </div>
 
-
             <div>
               {currentUser ?
                 <div style={{ display: "flex", marginRight: "40px" }}>
@@ -111,9 +119,33 @@ let Header1 = (props) => {
                         </div>
                       </div>
                     </div>
+                    <div className="tableInfoHeader">
+                      <div className="tableUser">
+
+                        <ul className="taskLists">
+                          <li className="list">
+                            <div className="avatarInTableInfo viewAccount">
+                              <img src="https://s3.coinmarketcap.com/static/img/portraits/633520289b613d3454890381.png" />
+                              <span className="userNameTblInfo">{currentUser.email}</span>
+                            </div>
+                          </li>
+                          <li className="list structortbl">
+                            <ul>
+                              <li className="list structorChildren">Watchlist</li>
+                              <li className="list structorChildren">Portfolio</li>
+                              <li className="list structorChildren">Settings</li>
+                              <li className="list structorChildren" onClick={logOut}>Log out</li>
+                            </ul>
+                          </li>
+
+                        </ul>
+                      </div>
+                    </div>
                   </div>
+
                 </div>
-                : <div className="hidden mt-2 mr-4 sm:inline-block">
+                :
+                <div className="hidden mt-2 mr-4 sm:inline-block">
                   <div className="hidden mt-2 mr-4 sm:inline-block">
                     <Link to="/login">
                       <a className="bg-transparent login-register hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded" style={{ borderRadius: "8px" }}>Login</a>
@@ -124,13 +156,6 @@ let Header1 = (props) => {
                       <a className="text-white bg-purple-700 login-register hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 sm:mr-2 lg:mr-0 dark:bg-purple-600 dark:hover:bg-purple-700 focus:outline-none dark:focus:ring-purple-800">Sign up</a>
                     </Link>
                   </div>
-                  <Routes>
-                    <Route path="/login" element={<LoginPage auth={auth} signInWithEmailAndPassword={signInWithEmailAndPassword}
-                    />} />
-                    <Route path="/register" element={<Register auth={auth} createUserWithEmailAndPassword={createUserWithEmailAndPassword}
-                      collection={collection} addDoc={addDoc} db={db} doc={doc} setDoc={setDoc} updateDoc={updateDoc} getDoc={getDoc}
-                      serverTimestamp={serverTimestamp} arrayUnion={arrayUnion} arrayRemove={arrayRemove} />} />
-                  </Routes>
                 </div>}
             </div>
 
@@ -354,7 +379,9 @@ let Header1 = (props) => {
                         <NavDropdown.Item href="#action/3.4">
                           <div className='dropdownTblBlock'>
                             <img src="https://s2.coinmarketcap.com/static/cloud/img/menu/MenuCryptoApiIcon.light.svg" className='dropdownTblBlockImg' />
-                            <p className='dropdownTblText'>Crypto API</p>
+                            <Link to="/buy-api">
+                              <p className='dropdownTblText' style={{ color: "#000" }}>Crypto API</p>
+                            </Link>
                           </div>
 
                         </NavDropdown.Item>
@@ -443,7 +470,7 @@ let Header1 = (props) => {
 
                     </NavDropdown.Item>
 
-                    `` </NavDropdown>
+                  </NavDropdown>
                 </Nav>
                 <Nav className="me-auto">
                   <NavDropdown title="Community" id="basic-nav-dropdown">

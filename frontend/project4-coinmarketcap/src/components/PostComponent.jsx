@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 let PostComponent = (props) => {
-    let { cryptocurrencyListings } = props;
-    console.log(cryptocurrencyListings);
+    let { cryptocurrencyListings, currentUser } = props;
     return (
         <div className="postComponent">
             <marquee>
@@ -11,8 +10,8 @@ let PostComponent = (props) => {
             </marquee>
             <div className="posComponentTop">
                 <div className="posComponentTopLeft">
-                    <img className="postComponentImg" src="https://s2.coinmarketcap.com/static/cloud/img/avatars/default.png" />
-                    <h6>Guest</h6>
+                    <img className="postComponentImg" src={currentUser ? "https://s3.coinmarketcap.com/static/img/portraits/633520289b613d3454890381.png" : "https://s2.coinmarketcap.com/static/cloud/img/avatars/default.png"} />
+                    {currentUser ? <marquee direction="right">{currentUser.email}</marquee> : <h6>Guest</h6>}
                 </div>
                 <div className="posComponentTopRight">
                     <button className="bullish">Bullish</button>
