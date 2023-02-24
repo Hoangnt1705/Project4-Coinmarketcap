@@ -50,6 +50,7 @@ let App = (props) => {
   const [listingsPercentChange24HColors, setListingsPercentChange24HColors] = useState('');
   const [listingsPercentChange7DColors, setListingsPercentChange7DColors] = useState('');
   const [imageListingCoins, setImageListingCoins] = useState('');
+  const [showSlide, setShowSlide] = useState(true);
 
   let compireTotalChange = (newTotalMarketCapYesterdayPercentageChange) => {
     let newTotalMarketCapYesterdayPercentageChangeColor = [];
@@ -172,6 +173,9 @@ let App = (props) => {
     style: 'currency',
     currency: 'USD',
   });
+  let handleClick = ()=>{
+    setShowSlide(!showSlide)
+  }
   return (
     <div>
       <Router>
@@ -215,18 +219,21 @@ let App = (props) => {
                     <label className="switch">
                       <span className="highLightBtn">Highlights</span>
                       <input type="checkbox" defaultChecked />
-                      <span className="slider round" />
+                      <span className="slider round" onClick={handleClick}/>
                     </label>
                   </div>
                 </section>
                 {/* Start block */}
                 <section>
                   <div className="max-w-screen-xl px-4 py-8 mx-auto space-y-12 lg:space-y-20 lg:py-24 lg:px-6">
+                    { showSlide ? 
                     <div className='slideContainer'>
-                      <SlideTbl />
-                      <SlideTbl />
-                      <PostComponent cryptocurrencyListings={cryptocurrencyListings} currentUser={currentUser} />
-                    </div>
+                    <SlideTbl />
+                    <SlideTbl />
+                    <PostComponent cryptocurrencyListings={cryptocurrencyListings} currentUser={currentUser} />
+                  </div> : null
+
+                    }
                   </div>
                 </section>
                 {/* End block */}
