@@ -4204,13 +4204,16 @@ input[type="radio"] {
   border-radius: 5px;
   background-color: white;
   padding: 0px 10px;
-  padding-top: -20px;
+  height: fit-content;
 }
 
 .postComponentImg {
   width: 36px;
   height: 36px;
   margin-right: 5px;
+}
+.posComponentBody{
+  height: fit-content;
 }
 
 .posComponentTop {
@@ -4976,7 +4979,7 @@ tr {
 
 .coinInfo2 {
   display: flex;
-  width: 100vw;
+  width: 100%;
 }
 
 .coinRank {
@@ -5144,7 +5147,9 @@ tr {
   font-weight: 600;
   margin-top: 20px;
 }
-
+#earn{
+  width: 100px;
+}
 .hideContainer {
   display: flex;
 
@@ -5188,7 +5193,6 @@ tr {
 }
 
 .routerSwitch {
-  display: flex;
   border: 1px solid #eff2f5;
 }
 
@@ -5406,6 +5410,77 @@ input:checked+.slider:before {
   100% {
     transform: perspective(1000px) rotateX(-359deg)
   }
+}
+.bitcoinChart {
+  margin-top: 15px;
+  font-size: 18px;
+  font-weight: 700;
+  margin-left: 5px;
+  margin-bottom: 0px;
+  height: 40px;
+}
+
+.chartBtns {
+  margin-left: 5px;
+  display: flex;
+  background-color: rgb(239 242 245);
+  align-items: center;
+  border-radius: 8px;
+  border: 1px solid #eff2f5;
+  padding: 3px;
+  width: fit-content;
+  /* height: 31.6px; */
+}
+.chartBtn {
+  width: fit-content;
+  height: fit-content;
+  padding: 3px 9px;
+  color: #58667e;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.chartBtn:hover {
+  border-radius: 6px;
+  background-color: white;
+}
+
+.chart-btn-container {
+  display: flex;
+  justify-content: space-between;
+  height: 31.6px;
+}
+
+.searchContainer {
+  position: relative;
+  display: flex;
+}
+
+.search {
+  color: #000;
+  border: 1px solid #eff2f5;
+  border-radius: 8px;
+  background-color: #eff2f5;
+  margin-left: 10px;
+  height: 31.6px;
+}
+
+.chartBtnContainer {
+  position: relative;
+  display: flex;
+  margin-right: 5px;
+  /* height: 31.6px; */
+}
+
+.fa-magnifying-glass {
+  position: absolute;
+  right: 15px;
+  margin-top: 8px !important;
+  cursor: pointer;
+  z-index: 9000;
+}
+.chart{
+  height: 150px;
 }
 
 @tailwind base;

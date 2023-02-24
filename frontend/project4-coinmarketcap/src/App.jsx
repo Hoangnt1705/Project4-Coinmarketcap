@@ -7,7 +7,7 @@ import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import Socket from './components/Socket';
 import SlideTbl from './components/SlideTbl';
 import PostComponent from './components/PostComponent';
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link, Outlet } from "react-router-dom";
 import { initializeApp } from "firebase/app";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 import { getFirestore, collection, addDoc, doc, setDoc, updateDoc, getDoc, serverTimestamp, field, arrayUnion, arrayRemove } from "firebase/firestore";
@@ -163,13 +163,15 @@ let App = (props) => {
           </header>
           {/* Run block */}
           <Routes>
-            <Route path="/overview" element={<Overview />} />
-            <Route path='/markets' element={<Markets />} />
-            <Route path='/historical-data' element={<HistoricalData />} />
-            <Route path='/news' element={<News />} />
-            <Route path='/price-estimates' element={<PriceEstimates />} />
-            <Route path='/more-info' element={<MoreInfo />} />
-            <Route path='/page' element={<Page />} />
+
+            <Route path='/page' element={<Page />} >
+              <Route path="overview" element={<Overview cryptocurrencyListings={cryptocurrencyListings}/>} />
+              <Route path='markets' element={<Markets />} />
+              <Route path='historical-data' element={<HistoricalData />} />
+              <Route path='news' element={<News />} />
+              <Route path='price-estimates' element={<PriceEstimates />} />
+              <Route path='more-info' element={<MoreInfo />} />
+            </Route>
             <Route path="/categories" element={<Categories cryptocurrencyCategories={cryptocurrencyCategories} formatter={formatter} />} />
             <Route path="/" element={
               <div>
@@ -740,8 +742,8 @@ let App = (props) => {
                 </footer>
               </div>
             } />
-          </Routes>
 
+          </Routes>
         </div >
 
       </Router>
