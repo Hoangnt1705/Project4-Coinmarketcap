@@ -266,6 +266,7 @@ let App = (props) => {
                         </div>
                       </div>
                     </div>
+
                     <div className="max-w-screen-xl px-4 py-8 mx-auto space-y-12 lg:space-y-20 lg:py-24 lg:px-6">
                       <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -305,6 +306,7 @@ let App = (props) => {
                           </tr>
                         </thead>
                         <tbody>
+
                           {/* {
                             cryptocurrencyListings.map((element, index) => (
                               <tr>
@@ -314,7 +316,6 @@ let App = (props) => {
                               </tr>
                             ))
                           } */}
-
 
                           {cryptocurrencyListings ? cryptocurrencyListings.map((element, index) => (
                             <tr className="hoverRow bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600" >
@@ -402,6 +403,8 @@ let App = (props) => {
           </Routes >
         </div >
       </Router >
+
+
     </div >
 
 

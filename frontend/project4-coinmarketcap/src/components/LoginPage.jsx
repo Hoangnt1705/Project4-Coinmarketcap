@@ -28,7 +28,7 @@ let LoginPage = (props) => {
                 <div className='form'>
                     <div className="out">
                         <Link to="/">
-                            <i class="fa-solid fa-x"></i>
+                            <i className="fa-solid fa-x"></i>
                         </Link>
                     </div>
                     <div className="title">

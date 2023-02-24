@@ -1,5 +1,8 @@
 import PostComponent from "./PostComponent";
 import { BrowserRouter as Router, Routes, Route, Link, Outlet } from "react-router-dom";
+import ChartComponent from './Chart';
+const labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May'];
+const data = [10, 15, 12, 8, 20];
 
 function Overview(props) {
     let { cryptocurrencyListings } = props;
@@ -40,7 +43,10 @@ function Overview(props) {
 
                     {/* Đổ biểu đồ vào đây nhé */}
 
+                    <div classname="App">
+                        <ChartComponent labels={labels} data={data} />
 
+                    </div>
 
 
                 </div>
@@ -173,10 +179,10 @@ function Overview(props) {
                         complex, we discuss <a href="https://coinmarketcap.com/alexandria/article/how-long-does-it-take-to-mine-one-bitcoin">how long it takes</a> to
                         mine one Bitcoin on CoinMarketCap <a href="https://coinmarketcap.com/alexandria">Alexandria</a> — as
                         we wrote above, mining Bitcoin is best understood as how long it takes to mine one block, as opposed
-                        to one Bitcoin. As of mid-September 2021, the Bitcoin mining reward is capped to 6.25 BTC after 
+                        to one Bitcoin. As of mid-September 2021, the Bitcoin mining reward is capped to 6.25 BTC after
                         the <a href="https://coinmarketcap.com/alexandria/article/bitcoin-halvings-what-they-are-why-they-happen-and-why-you-should-care">2020 halving</a>, which is roughly $299,200 in Bitcoin price today.
                     </p>
-                    
+
                 </div>
             </div>
 
