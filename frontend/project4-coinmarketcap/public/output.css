@@ -4196,6 +4196,7 @@ input[type="radio"] {
   border: 0.5px solid #cfd6e4;
   border-radius: 5px;
   background-color: white;
+  margin: 0px 1px;
 }
 
 .postComponent {
@@ -4204,7 +4205,6 @@ input[type="radio"] {
   border-radius: 5px;
   background-color: white;
   padding: 0px 10px;
-  height: fit-content;
 }
 
 .postComponentImg {
@@ -4212,7 +4212,8 @@ input[type="radio"] {
   height: 36px;
   margin-right: 5px;
 }
-.posComponentBody{
+
+.posComponentBody {
   height: fit-content;
 }
 
@@ -5148,9 +5149,11 @@ tr {
   font-weight: 600;
   margin-top: 20px;
 }
-#earn{
+
+#earn {
   width: 100px;
 }
+
 .hideContainer {
   display: flex;
 
@@ -5527,6 +5530,7 @@ input:checked+.slider:before {
     transform: perspective(1000px) rotateX(-359deg)
   }
 }
+
 .bitcoinChart {
   margin-top: 15px;
   font-size: 18px;
@@ -5547,6 +5551,7 @@ input:checked+.slider:before {
   width: fit-content;
   /* height: 31.6px; */
 }
+
 .chartBtn {
   width: fit-content;
   height: fit-content;
@@ -5595,7 +5600,8 @@ input:checked+.slider:before {
   cursor: pointer;
   z-index: 9000;
 }
-.chart{
+
+.chart {
   height: 150px;
 }
 
