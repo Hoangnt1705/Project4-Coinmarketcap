@@ -1,6 +1,6 @@
 import { Slide } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css';
-import TblTop from './TblTop';
+
 
 let SlideTbl = () => {
     // const spanStyle = {
@@ -20,18 +20,54 @@ let SlideTbl = () => {
     const slideImages = [
         {
             title: "Trending",
-            url: 'https://images.unsplash.com/photo-1509721434272-b79147e0e708?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80',
-            caption: 'Slide 1'
+            img: "https://s2.coinmarketcap.com/static/cloud/img/TrendingIcon.png?_=56fec67",
+            link: "",
+            top1Icon:"https://s2.coinmarketcap.com/static/img/coins/64x64/18069.png",
+            top1Name:"STEPN",
+            top1Token:"GMT",
+            top1Value:"9.37%",
+            top2Icon:"https://s2.coinmarketcap.com/static/img/coins/64x64/23121.png",
+            top2Name:"Blur",
+            top2Token:"BLUR",
+            top2Value:"10.52%",
+            top3Icon:"https://s2.coinmarketcap.com/static/img/coins/64x64/5994.png",
+            top3Name:"Shiba Inu",
+            top3Token:"SHIB",
+            top3Value:"4.11%",
         },
         {
             title: 'Recently Added',
-            url: 'https://images.unsplash.com/photo-1506710507565-203b9f24669b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1536&q=80',
-            caption: 'Slide 2'
+            img: "https://s2.coinmarketcap.com/static/cloud/img/AddIcon.png?_=56fec67",
+            link: "",
+            top1Icon:"https://s2.coinmarketcap.com/static/img/coins/64x64/23655.png",
+            top1Name:"Ordinal BTC",
+            top1Token:"OBTC",
+            top1Value:"$0.06916",
+            top2Icon:"https://s2.coinmarketcap.com/static/img/coins/64x64/23654.png",
+            top2Name:"Savant AI",
+            top2Token:"SAVANTAI",
+            top2Value:"$0.00009464",
+            top3Icon:"https://s2.coinmarketcap.com/static/img/coins/64x64/23653.png",
+            top3Name:"Totocat",
+            top3Token:"TOTOCAT",
+            top3Value:"$0.000000000462",
         },
         {
-            title: 'Biggest Gainers',
-            url: 'https://images.unsplash.com/photo-1536987333706-fc9adfb10d91?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80',
-            caption: 'Slide 3'
+            title: 'Buy API',
+            img: "https://s2.coinmarketcap.com/static/cloud/img/GainnerIcon.png?_=56fec67",
+            link: "http://localhost:3006/buy-api",
+            top1Icon:null,
+            top1Name:"STARTUP",
+            top1Token:null,
+            top1Value:"$79/month",
+            top2Icon:null,
+            top2Name:"STANDARD",
+            top2Token:null,
+            top2Value:"$299/month",
+            top3Icon:null,
+            top3Name:"PROFESSIONAL",
+            top3Token:null,
+            top3Value:"$699/month",
         },
     ];
     return (
@@ -42,17 +78,49 @@ let SlideTbl = () => {
                         <div className='slide-body' style={{ ...divStyle }}>
                             <div className='slideTop'>
                                 <div className='slideTopLeft'>
-                                    <img src="https://s2.coinmarketcap.com/static/cloud/img/GainnerIcon.png?_=2cbfbbf" alt="" />
-                                    <h5>Title</h5>
+                                    <img src={slideImage.img} alt="" />
+                                    <h5>{slideImage.title}</h5>
                                 </div>
                                 <div className='slideTopRight'>
-                                    <span>More</span>
+                                    <span><a href={slideImage.link}>More</a></span>
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" height={8} width={6} viewBox="0 0 6 8" className="sc-aef7b723-0 kZybLy" style={{ marginLeft: '6px' }}><path d="M1.5 1L4.5 4L1.5 7" stroke="#3861FB" strokeWidth={2} strokeMiterlimit={10} strokeLinecap="round" strokeLinejoin="round" /></svg>
                                 </div>
                             </div>
-                            <TblTop />
-                            <TblTop />
-                            <TblTop />
+                            <div className='top'>
+                                <div className='topLeft'>
+                                    <span>1</span>
+                                    <img src={slideImage.top1Icon} alt="" />
+                                    <p className='coinName'>{slideImage.top1Name}</p>
+                                    <span className='coinToken'>{slideImage.top1Token}</span>
+                                </div>
+                                <div className='topRight'>
+                                    <span>{slideImage.top1Value}</span>
+                                </div>
+                            </div>
+                            <div className='top'>
+                                <div className='topLeft'>
+                                    <span>2</span>
+                                    <img src={slideImage.top2Icon} alt="" />
+                                    <p className='coinName'>{slideImage.top2Name}</p>
+                                    <span className='coinToken'>{slideImage.top2Token}</span>
+                                </div>
+                                <div className='topRight'>
+                                    <span>{slideImage.top2Value}</span>
+                                </div>
+                            </div>
+                            <div className='top'>
+                                <div className='topLeft'>
+                                    <span>3</span>
+                                    <img src={slideImage.top3Icon} alt="" />
+                                    <p className='coinName'>{slideImage.top3Name}</p>
+                                    <span className='coinToken'>{slideImage.top3Token}</span>
+                                </div>
+                                <div className='topRight'>
+                                    <span>{slideImage.top3Value}</span>
+                                </div>
+                            </div>
+
+
                         </div>
                     </div>
                 ))}
