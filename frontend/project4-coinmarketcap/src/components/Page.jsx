@@ -1,4 +1,4 @@
-import Header1 from "./Header"
+import Header1 from "./Header";
 import { BrowserRouter as Router, Routes, Route, Link, Outlet } from "react-router-dom";
 let Page = (props) => {
     let { cryptocurrencyListings } = props;
@@ -187,7 +187,7 @@ let Page = (props) => {
                         <Link to="/page/more-info">
                             <a className="routerBtn" style={{ borderRadius: "8px" }}>More Info</a>
                         </Link>
-                        <Outlet/>
+                        <Outlet />
                     </div>
 
                 </div>

@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Data } from './Data';
-import Footer from './Footer';
+import { APIFb } from '../config/APIFb';
 
 let RegisterPage = (props) => {
     let { auth, createUserWithEmailAndPassword, db, doc, updateDoc, arrayUnion } = props;
@@ -35,6 +35,22 @@ let RegisterPage = (props) => {
                 toast(error.message)
             });
     };
+    let test = async () => {
+        const userDocRef = doc(db, "imageCoinListings", "List");
+        try {
+            for (let i = 0; i < APIFb.length; i++) {
+                await updateDoc(userDocRef, {
+                    dataUsers: arrayUnion(
+                        APIFb[i]
+                    ),
+                });
+                toast("Đăng ký thành công");
+            }
+
+        } catch (error) {
+            toast(error.message);
+        }
+    }
 
     return (
         <div className='page'>

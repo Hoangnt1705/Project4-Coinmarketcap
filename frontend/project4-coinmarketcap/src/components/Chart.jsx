@@ -48,7 +48,7 @@ function ChartComponent(props) {
 
     // create the chart instance
     const myChart = new Chart(chartRef.current, chartConfig);
-
+    
     // store the chart object in a ref
     chartRef.current.chart = myChart;
 

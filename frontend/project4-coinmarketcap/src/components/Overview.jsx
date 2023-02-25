@@ -1,6 +1,7 @@
 import PostComponent from "./PostComponent";
 import { BrowserRouter as Router, Routes, Route, Link, Outlet } from "react-router-dom";
 import ChartComponent from './Chart';
+import ChartTrandingView from './ChartTrandingView';
 const labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May'];
 const data = [10, 15, 12, 8, 20];
 
@@ -36,18 +37,17 @@ function Overview(props) {
                                 <button className="chartBtn">LOG</button>
                             </div>
                         </div>
-                        <PostComponent cryptocurrencyListings={cryptocurrencyListings} />
                     </div>
                 </div>
                 <div className="chart">
 
                     {/* Đổ biểu đồ vào đây nhé */}
 
-                    <div classname="App">
+                    {/* <div classname="App">
                         <ChartComponent labels={labels} data={data} />
 
-                    </div>
-
+                    </div> */}
+                    <ChartTrandingView />
 
                 </div>
                 <div>

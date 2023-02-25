@@ -11,7 +11,6 @@ import { BrowserRouter as Router, Routes, Route, Link, Outlet } from "react-rout
 import { initializeApp } from "firebase/app";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
 import { getFirestore, collection, addDoc, doc, setDoc, updateDoc, getDoc, serverTimestamp, arrayUnion, arrayRemove } from "firebase/firestore";
-import SimpleLineChart from './components/SimpleLineChart'
 import Header1 from './components/Header';
 import Categories from './components/Categories';
 import Page from './components/Page';
@@ -27,12 +26,12 @@ import BuyAPI from './components/BuyAPI';
 import Footer from './components/Footer';
 let App = (props) => {
   const firebaseConfig = {
-    apiKey: "AIzaSyAwZ9eCKfJStYiWM_RVDjKSFmhKuBW7330",
-    authDomain: "project4-79573.firebaseapp.com",
-    projectId: "project4-79573",
-    storageBucket: "project4-79573.appspot.com",
-    messagingSenderId: "700261822421",
-    appId: "1:700261822421:web:00374d946b79ecfcc8175c"
+    apiKey: "AIzaSyABQ2K91qwZnETeXWtvDVcNE0jmXCbY6v4",
+    authDomain: "project4-clone.firebaseapp.com",
+    projectId: "project4-clone",
+    storageBucket: "project4-clone.appspot.com",
+    messagingSenderId: "376576800913",
+    appId: "1:376576800913:web:3f38bd2cec93089a032730"
   };
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
@@ -128,7 +127,7 @@ let App = (props) => {
     setCryptocurrencyListings(newCryptocurrencyListings);
   };
   let imgListingCoinsFunc = () => {
-    const myDocRef = doc(db, "imageListingCoins", "E0hqTnOBpOcQfAyClBqx");
+    const myDocRef = doc(db, "imageCoinListings", "List");
     return getDoc(myDocRef)
       .then(doc => {
         if (doc.exists()) {
@@ -167,13 +166,13 @@ let App = (props) => {
     return () => {
       Socket.off('global-metrics-quotes');
     };
-  }, [dataLatest]);
+  }, [dataLatest, currentUser, cryptocurrencyListings, imageListingCoins]);
 
   const formatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
   });
-  let handleClick = ()=>{
+  let handleClick = () => {
     setShowSlide(!showSlide)
   }
   return (
@@ -200,8 +199,7 @@ let App = (props) => {
               <Route path='price-estimates' element={<PriceEstimates />} />
               <Route path='more-info' element={<MoreInfo />} />
             </Route>
-            <Route path="/login" element={<LoginPage auth={auth} signInWithEmailAndPassword={signInWithEmailAndPassword}
-            />} />
+            <Route path="/login" element={<LoginPage auth={auth} signInWithEmailAndPassword={signInWithEmailAndPassword} />} />
             <Route path="/register" element={<Register auth={auth} createUserWithEmailAndPassword={createUserWithEmailAndPassword}
               collection={collection} addDoc={addDoc} db={db} doc={doc} setDoc={setDoc} updateDoc={updateDoc} getDoc={getDoc}
               serverTimestamp={serverTimestamp} arrayUnion={arrayUnion} arrayRemove={arrayRemove} />} />
@@ -219,19 +217,19 @@ let App = (props) => {
                     <label className="switch">
                       <span className="highLightBtn">Highlights</span>
                       <input type="checkbox" defaultChecked />
-                      <span className="slider round" onClick={handleClick}/>
+                      <span className="slider round" onClick={handleClick} />
                     </label>
                   </div>
                 </section>
                 {/* Start block */}
                 <section>
                   <div className="max-w-screen-xl px-4 py-8 mx-auto space-y-12 lg:space-y-20 lg:py-24 lg:px-6">
-                    { showSlide ? 
-                    <div className='slideContainer'>
-                    <SlideTbl />
-                    <SlideTbl />
-                    <PostComponent cryptocurrencyListings={cryptocurrencyListings} currentUser={currentUser} />
-                  </div> : null
+                    {showSlide ?
+                      <div className='slideContainer'>
+                        <SlideTbl />
+                        <SlideTbl />
+                        <PostComponent cryptocurrencyListings={cryptocurrencyListings} currentUser={currentUser} />
+                      </div> : null
 
                     }
                   </div>
@@ -325,12 +323,12 @@ let App = (props) => {
                           } */}
 
                           {cryptocurrencyListings ? cryptocurrencyListings.map((element, index) => (
-                            <tr className="hoverRow bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600" >
+                            <tr key={element.id} className="hoverRow bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600" >
                               <th scope="row" className="px-6 py-4 boldListingCrypto font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                 <i className="fa-solid fa-star"></i>
                               </th>
                               <td className="px-6 py-4 boldListingCrypto" key={element.id}>
-                                {index}
+                                {index + 1}
                               </td>
                               <td className="px-6 py-4 boldListingCrypto" style={{ display: "flex" }}>
                                 <img src={imageListingCoins[index].url} alt="" className="imageCoinInLists" /> {element.name} <span className="symbolOfName">{element.symbol}</span>
