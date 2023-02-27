@@ -35,6 +35,7 @@ function Page({ Socket }) {
     });
     return (
         <>
+            {console.log(dataCoin)}
             {isLoading ? <CircleLoader /> : <div>
                 <div className='tBody '>
                     <div className='coinInfo items-center max-w-screen-xl px-4 py-8 mx-auto lg:grid lg:grid-cols-4 lg:gap-16 xl:gap-24 lg:py-24 lg:px-6'>
@@ -143,7 +144,7 @@ function Page({ Socket }) {
                                 </div>
                                 <div className='statsBlockInner2'>
                                     <span className='statsFooter1'>24h Volume / Market Cap</span>
-                                    <span className='statsFooter2'>0.0572</span>
+                                    <span className='statsFooter2'>{formatter.format(dataCoin.market_data.market_cap_change_24h)}</span>
                                 </div>
                             </div>
 
@@ -151,9 +152,9 @@ function Page({ Socket }) {
                                 <div className='statsBlockInner'>
                                     <span className='statsBlockInnerTitle'>Fully Diluted Market Cap</span>
                                     <div className='statsItemRight'>
-                                        <p className='startsItemPrice'>$522,717,374,269</p>
+                                        <p className='startsItemPrice'>{formatter.format(dataCoin.market_data.fully_diluted_valuation.usd)}</p>
                                         <span className='pricePercent2'>
-                                            <i className="fa-solid fa-caret-up"></i>17,0%
+                                            <i className="fa-solid fa-caret-up"></i>Price change percentage 7d in currency: {dataCoin.market_data.price_change_percentage_7d_in_currency.usd + "%"}
                                         </span>
                                     </div>
                                 </div>
@@ -166,17 +167,17 @@ function Page({ Socket }) {
                                     <div className='statsItemRight'>
                                         <p className='startsItemPrice'>$27,469,226,683</p>
                                         <span className='pricePercent2'>
-                                            <i className="fa-solid fa-caret-up"></i>5,14%
+                                            <i className="fa-solid fa-caret-up"></i>Price change percentage 1h in currency: {dataCoin.market_data.price_change_percentage_1h_in_currency.usd + "%"}
                                         </span>
                                     </div>
                                 </div>
                                 <div className='statsBlockInner2'>
-                                    <span className='statsFooter1'>CEX Vol</span>
-                                    <span className='statsFooter2'>$27,548,485,365</span>
+                                    <span className='statsFooter1'>High 24h</span>
+                                    <span className='statsFooter2'>{formatter.format(dataCoin.market_data.high_24h.usd)}</span>
                                 </div>
                                 <div className='statsBlockInner2'>
-                                    <span className='statsFooter1'>DEX Vol</span>
-                                    <span className='statsFooter2'>$7,569,760</span>
+                                    <span className='statsFooter1'>Low 24h</span>
+                                    <span className='statsFooter2'>{formatter.format(dataCoin.market_data.low_24h.usd)}</span>
                                 </div>
                             </div>
 
@@ -184,15 +185,15 @@ function Page({ Socket }) {
                                 <div className='statsBlockInner'>
                                     <span className='statsBlockInnerTitle'>Circulating Supply</span>
                                     <div className='statsItemRight'>
-                                        <span className='startsItemPrice'>19,297,418 BTC</span>
+                                        <span className='startsItemPrice'>{dataCoin.market_data.circulating_supply} {dataCoin.symbol.toUpperCase()}</span>
                                         <span className='pricePercent2'>
-                                            <i className="fa-solid fa-caret-up"></i>17,1%
+                                            <i className="fa-solid fa-caret-up"></i>Price change percentage 30d in currency: {dataCoin.market_data.price_change_percentage_30d_in_currency.usd + "%"}
                                         </span>
                                     </div>
                                 </div>
                                 <div className='statsBlockInner2'>
                                     <span className='statsFooter1'>24h Volume / Market Cap</span>
-                                    <span className='statsFooter2'>0.0572</span>
+                                    <span className='statsFooter2'>{dataCoin.market_data.market_cap_change_percentage_24h} %</span>
                                 </div>
                             </div>
 
