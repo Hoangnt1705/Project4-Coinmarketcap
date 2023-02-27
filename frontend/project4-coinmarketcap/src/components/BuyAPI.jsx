@@ -19,7 +19,7 @@ let BuyAPI = () => {
                                 <span className="mr-2 text-5xl font-extrabold">$79</span>
                                 <span className="text-gray-500 ">/month</span>
                             </div>
-                            {/* List */}
+                            {/* E0hqTnOBpOcQfAyClBqx */}
                             <ul role="list" className="mb-8 space-y-4 text-left">
                                 <li className="flex items-center space-x-3">
                                     {/* Icon */}
@@ -52,7 +52,7 @@ let BuyAPI = () => {
                                 <span className="mr-2 text-5xl font-extrabold">$299</span>
                                 <span className="text-gray-500 " >/month</span>
                             </div>
-                            {/* List */}
+                            {/* E0hqTnOBpOcQfAyClBqx */}
                             <ul role="list" className="mb-8 space-y-4 text-left">
                                 <li className="flex items-center space-x-3">
                                     {/* Icon */}
@@ -85,7 +85,7 @@ let BuyAPI = () => {
                                 <span className="mr-2 text-5xl font-extrabold">$699</span>
                                 <span className="text-gray-500 ">/month</span>
                             </div>
-                            {/* List */}
+                            {/* E0hqTnOBpOcQfAyClBqx */}
                             <ul role="list" className="mb-8 space-y-4 text-left">
                                 <li className="flex items-center space-x-3">
                                     {/* Icon */}
@@ -133,7 +133,7 @@ let BuyAPI = () => {
                         <div className="text-gray-500 sm:text-lg ">
                             <h2 className="mb-4 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white">🔥Join CoinMarketCap’s New Free API Sponsorship Program</h2>
                             <p className="mb-8 font-light lg:text-xl">The world's cryptocurrency data authority has a professional API made for you.</p>
-                            {/* List */}
+                            {/* E0hqTnOBpOcQfAyClBqx */}
                             <ul role="list" className="pt-8 space-y-5 border-t border-gray-200 my-7 dark:border-gray-700">
                                 <li className="flex space-x-3">
                                     {/* Icon */}
@@ -161,7 +161,7 @@ let BuyAPI = () => {
                         <div className="text-gray-500 sm:text-lg ">
                             <h2 className="mb-4 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white">We invest in the world’s potential</h2>
                             <p className="mb-8 font-light lg:text-xl">Deliver great service experiences fast - without the complexity of traditional solutions. Accelerate critical development work, eliminate toil, and deploy changes with ease.</p>
-                            {/* List */}
+                            {/* E0hqTnOBpOcQfAyClBqx */}
                             <ul role="list" className="pt-8 space-y-5 border-t border-gray-200 my-7 dark:border-gray-700">
                                 <li className="flex space-x-3">
                                     {/* Icon */}

@@ -89,7 +89,7 @@ let Footer = () => {
                 <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
                 <div className="text-center">
                     <a href="#" className="flex items-center justify-center mb-5 text-2xl font-semibold text-gray-900 dark:text-white">
-                        <img src="./images/logo.svg" className="h-6 mr-3 sm:h-9" alt="Landwind Logo" />
+                        <img src="https://1000logos.net/wp-content/uploads/2022/03/CoinMarketCap-logo.png" className="h-6 mr-3 sm:h-9" alt="CoinMarketCap Logo" />
                         CoinMarketCap
                     </a>
                     <span className="block text-sm text-center text-gray-500 ">© 2021-2022 CoinmarketCap™. All Rights Reserved. Built with <a href="https://flowbite.com" className="text-purple-600 hover:underline liFooter dark:text-purple-500">Flowbite</a> and <a href="https://tailwindcss.com" className="text-purple-600 hover:underline liFooter dark:text-purple-500">Tailwind CSS</a>.

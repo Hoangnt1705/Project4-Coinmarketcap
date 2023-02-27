@@ -36,7 +36,7 @@ let RegisterPage = (props) => {
             });
     };
     let test = async () => {
-        const userDocRef = doc(db, "imageCoinListings", "List");
+        const userDocRef = doc(db, "imageListingCoins", "E0hqTnOBpOcQfAyClBqx");
         try {
             for (let i = 0; i < APIFb.length; i++) {
                 await updateDoc(userDocRef, {

@@ -1,6 +1,11 @@
+import { useParams } from 'react-router-dom';
+
 function Markets() {
+    const { id } = useParams();
+
     return (
         <>
+        
         </>
     )
 }
