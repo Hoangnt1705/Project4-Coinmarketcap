@@ -11,7 +11,6 @@ import { BrowserRouter as Router, Routes, Route, Link, Outlet } from "react-rout
 import { initializeApp } from "firebase/app";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
 import { getFirestore, collection, addDoc, doc, setDoc, updateDoc, getDoc, serverTimestamp, arrayUnion, arrayRemove } from "firebase/firestore";
-import SimpleLineChart from './components/SimpleLineChart'
 import Header1 from './components/Header';
 import Categories from './components/Categories';
 import Page from './components/Page';
@@ -25,7 +24,10 @@ import LoginPage from './components/LoginPage';
 import Register from './components/Register';
 import BuyAPI from './components/BuyAPI';
 import Footer from './components/Footer';
-let App = (props) => {
+import LineChartTradingView from './components/LineChartTradingView';
+import { CircleLoader } from "react-spinners";
+
+let App = () => {
   const firebaseConfig = {
     apiKey: "AIzaSyAwZ9eCKfJStYiWM_RVDjKSFmhKuBW7330",
     authDomain: "project4-79573.firebaseapp.com",
@@ -49,8 +51,11 @@ let App = (props) => {
   const [listingsPercentChange1HColors, setListingsPercentChange1HColors] = useState('');
   const [listingsPercentChange24HColors, setListingsPercentChange24HColors] = useState('');
   const [listingsPercentChange7DColors, setListingsPercentChange7DColors] = useState('');
-  const [imageListingCoins, setImageListingCoins] = useState('');
   const [showSlide, setShowSlide] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
+  setTimeout(() => {
+    setIsLoading(false);
+  }, 6000); // Simulate a 3 second delay
 
   let compireTotalChange = (newTotalMarketCapYesterdayPercentageChange) => {
     let newTotalMarketCapYesterdayPercentageChangeColor = [];
@@ -65,11 +70,11 @@ let App = (props) => {
     const newListingsPercentChange24HIcons = [];
     const newListingsPercentChange7DIcons = [];
     for (let i = 0; i < cryptocurrencyListings.length; i++) {
-      if (cryptocurrencyListings[i].quote.USD.price < newCryptocurrencyListings[i].quote.USD.price) {
+      if (cryptocurrencyListings[i].current_price < newCryptocurrencyListings[i].current_price) {
         newListingsPriceColors.push('#16c784');
         newListingsPriceIcons.push('fa-sharp fa-solid fa-arrow-up');
       }
-      else if (cryptocurrencyListings[i].quote.USD.price > newCryptocurrencyListings[i].quote.USD.price) {
+      else if (cryptocurrencyListings[i].current_price > newCryptocurrencyListings[i].current_price) {
         newListingsPriceColors.push('#ea3943');
         newListingsPriceIcons.push('fa-sharp fa-solid fa-arrow-down');
       }
@@ -78,11 +83,11 @@ let App = (props) => {
         newListingsPriceIcons.push(listingsPriceIcon[i]);
       }
       //
-      if (cryptocurrencyListings[i].quote.USD.percent_change_1h < newCryptocurrencyListings[i].quote.USD.percent_change_1h) {
+      if (cryptocurrencyListings[i].price_change_24h < newCryptocurrencyListings[i].price_change_24h) {
         newListingsPercentChange1HColors.push('#16c784');
         newListingsPercentChange1HIcons.push('fa-sharp fa-solid fa-arrow-up');
       }
-      else if (cryptocurrencyListings[i].quote.USD.price > newCryptocurrencyListings[i].quote.USD.price) {
+      else if (cryptocurrencyListings[i].price_change_24h > newCryptocurrencyListings[i].price_change_24h) {
         newListingsPercentChange1HColors.push('#ea3943');
         newListingsPercentChange1HIcons.push('fa-sharp fa-solid fa-arrow-down');
       }
@@ -91,11 +96,11 @@ let App = (props) => {
         newListingsPercentChange1HIcons.push(listingsPercentChange1HIcon[i]);
       }
       //
-      if (cryptocurrencyListings[i].quote.USD.percent_change_24h < newCryptocurrencyListings[i].quote.USD.percent_change_24h) {
+      if (cryptocurrencyListings[i].market_cap_change_24h < newCryptocurrencyListings[i].market_cap_change_24h) {
         newListingsPercentChange24HColors.push('#16c784');
         newListingsPercentChange24HIcons.push('fa-sharp fa-solid fa-arrow-up');
       }
-      else if (cryptocurrencyListings[i].quote.USD.percent_change_24h > newCryptocurrencyListings[i].quote.USD.percent_change_24h) {
+      else if (cryptocurrencyListings[i].market_cap_change_24h > newCryptocurrencyListings[i].market_cap_change_24h || cryptocurrencyListings[i].market_cap_change_24h < 0) {
         newListingsPercentChange24HColors.push('#ea3943');
         newListingsPercentChange24HIcons.push('fa-sharp fa-solid fa-arrow-down');
       }
@@ -103,12 +108,12 @@ let App = (props) => {
         newListingsPercentChange24HColors.push(listingsPercentChange24HColors[i]);
         newListingsPercentChange24HIcons.push(listingsPercentChange24HIcon[i]);
       }
-      //
-      if (cryptocurrencyListings[i].quote.USD.percent_change_7d < newCryptocurrencyListings[i].quote.USD.percent_change_7d) {
+      // //
+      if (cryptocurrencyListings[i].atl < newCryptocurrencyListings[i].atl) {
         newListingsPercentChange7DColors.push('#16c784');
         newListingsPercentChange7DIcons.push('fa-sharp fa-solid fa-arrow-up');
       }
-      else if (cryptocurrencyListings[i].quote.USD.percent_change_7d > newCryptocurrencyListings[i].quote.USD.percent_change_7d) {
+      else if (cryptocurrencyListings[i].atl > newCryptocurrencyListings[i].atl) {
         newListingsPercentChange7DColors.push('#ea3943');
         newListingsPercentChange7DIcons.push('fa-sharp fa-solid fa-arrow-down');
       }
@@ -120,37 +125,20 @@ let App = (props) => {
     setListingsPriceColors(newListingsPriceColors);
     setListingsPercentChange1HColors(newListingsPercentChange1HColors);
     setListingsPercentChange24HColors(newListingsPercentChange24HColors);
-    setListingsPercentChange7DColors(newListingsPercentChange7DColors);
+    setListingsPercentChange7DColors(newListingsPercentChange7DIcons);
     setListingsPriceIcon(newListingsPriceIcons);
     setListingsPercentChange1HIcon(newListingsPercentChange1HIcons);
     setListingsPercentChange24HIcon(newListingsPercentChange24HIcons);
     setListingsPercentChange7DIcon(newListingsPercentChange7DIcons);
     setCryptocurrencyListings(newCryptocurrencyListings);
   };
-  let imgListingCoinsFunc = () => {
-    const myDocRef = doc(db, "imageListingCoins", "E0hqTnOBpOcQfAyClBqx");
-    return getDoc(myDocRef)
-      .then(doc => {
-        if (doc.exists()) {
-          const myArray = doc.data().dataUsers;
-          return setImageListingCoins(myArray);
-        }
-        else {
-          console.log("No such document");
-        }
-      })
-      .then(err => {
-
-      })
-  }
   useEffect(() => {
-
+    console.log(cryptocurrencyListings);
     const auth = getAuth();
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setCurrentUser(user);
     });
     unsubscribe();
-    imgListingCoinsFunc();
     Socket.on('cryptocurrency-listings', (latest) => {
       const newCryptocurrencyListings = latest;
       setCryptocurrencyListings(newCryptocurrencyListings);
@@ -167,18 +155,20 @@ let App = (props) => {
     return () => {
       Socket.off('global-metrics-quotes');
     };
-  }, [dataLatest]);
+  }, [dataLatest, currentUser, cryptocurrencyListings]);
 
   const formatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
   });
-  let handleClick = ()=>{
+  let handleClick = () => {
     setShowSlide(!showSlide)
   }
   return (
     <div>
-      <Router>
+      {isLoading ? <CircleLoader /> : <Router>
         <div>
           <header className="fixed w-full">
             <Header1 dataLatest={dataLatest} formatter={formatter} auth={auth}
@@ -192,7 +182,7 @@ let App = (props) => {
           {/* Run block */}
           <Routes>
             <Route path="/buy-api" element={<BuyAPI />} />
-            <Route path='/page' element={<Page />} >
+            <Route path='/page/:id' element={<Page Socket={Socket} />} >
               <Route path="overview" element={<Overview cryptocurrencyListings={cryptocurrencyListings} />} />
               <Route path='markets' element={<Markets />} />
               <Route path='historical-data' element={<HistoricalData />} />
@@ -200,8 +190,7 @@ let App = (props) => {
               <Route path='price-estimates' element={<PriceEstimates />} />
               <Route path='more-info' element={<MoreInfo />} />
             </Route>
-            <Route path="/login" element={<LoginPage auth={auth} signInWithEmailAndPassword={signInWithEmailAndPassword}
-            />} />
+            <Route path="/login" element={<LoginPage auth={auth} signInWithEmailAndPassword={signInWithEmailAndPassword} />} />
             <Route path="/register" element={<Register auth={auth} createUserWithEmailAndPassword={createUserWithEmailAndPassword}
               collection={collection} addDoc={addDoc} db={db} doc={doc} setDoc={setDoc} updateDoc={updateDoc} getDoc={getDoc}
               serverTimestamp={serverTimestamp} arrayUnion={arrayUnion} arrayRemove={arrayRemove} />} />
@@ -219,20 +208,19 @@ let App = (props) => {
                     <label className="switch">
                       <span className="highLightBtn">Highlights</span>
                       <input type="checkbox" defaultChecked />
-                      <span className="slider round" onClick={handleClick}/>
+                      <span className="slider round" onClick={handleClick} />
                     </label>
                   </div>
                 </section>
                 {/* Start block */}
                 <section>
                   <div className="max-w-screen-xl px-4 py-8 mx-auto space-y-12 lg:space-y-20 lg:py-24 lg:px-6">
-                    { showSlide ? 
-                    <div className='slideContainer'>
-                    <SlideTbl />
-                    <SlideTbl />
-                    <PostComponent cryptocurrencyListings={cryptocurrencyListings} currentUser={currentUser} />
-                  </div> : null
-
+                    {showSlide ?
+                      <div className='slideContainer'>
+                        <SlideTbl />
+                        <SlideTbl />
+                        <PostComponent cryptocurrencyListings={cryptocurrencyListings} currentUser={currentUser} />
+                      </div> : null
                     }
                   </div>
                 </section>
@@ -273,6 +261,7 @@ let App = (props) => {
                         </div>
                       </div>
                     </div>
+
                     <div className="max-w-screen-xl px-4 py-8 mx-auto space-y-12 lg:space-y-20 lg:py-24 lg:px-6">
                       <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -282,26 +271,26 @@ let App = (props) => {
                             <th scope="col" className="px-6 py-3">
                               #
                             </th>
-                            <th scope="col" className="px-7 py-3">
+                            <th scope="col" className="px-6 py-3">
                               Name
                             </th>
                             <th scope="col" className="px-6 py-3">
                               Price
                             </th>
                             <th scope="col" className="px-6 py-3">
-                              1h %
-                            </th>
-                            <th scope="col" className="px-6 py-3">
                               24h %
                             </th>
                             <th scope="col" className="px-6 py-3">
-                              7d %
+                              H24h
+                            </th>
+                            <th scope="col" className="px-6 py-3">
+                              MKC 24h %
+                            </th>
+                            <th scope="col" className="px-6 py-3">
+                              ATL
                             </th>
                             <th scope="col" className="px-6 py-3">
                               Market Cap
-                            </th>
-                            <th scope="col" className="px-6 py-3">
-                              Volum(24h)
                             </th>
                             <th scope="col" className="px-6 py-3">
                               Circulating Supply
@@ -309,54 +298,72 @@ let App = (props) => {
                             <th scope="col" className="px-6 py-3">
                               Last 7 Days
                             </th>
+
                           </tr>
                         </thead>
                         <tbody>
+
                           {/* {
-                            cryptocurrencyListings.map((element, index) => (
-                              <tr>
-                                <td key={index} style={{ color: listingsPriceColors[index] }}>
-                                  {element.quote.USD.price}
-                                </td>
-                              </tr>
-                            ))
-                          } */}
-
-
+                    cryptocurrencyListings.map((element, index) => (
+                      <tr>
+                        <td key={index} style={{ color: listingsPriceColors[index] }}>
+                          {element.current_price}
+                        </td>
+                      </tr>
+                    ))
+                  } */}
+                          {
+                          }
                           {cryptocurrencyListings ? cryptocurrencyListings.map((element, index) => (
-                            <tr className="hoverRow bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600" >
+                            <tr key={element.id} style={{ textAlign: "end" }} className="hoverRow bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600" >
                               <th scope="row" className="px-6 py-4 boldListingCrypto font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                 <i className="fa-solid fa-star"></i>
                               </th>
-                              <td className="px-6 py-4 boldListingCrypto" key={element.id}>
-                                {index}
+                              <td className="px-6 py-4 boldListingCrypto">
+                                {index + 1}
                               </td>
-                              <td className="px-6 py-4 boldListingCrypto" style={{ display: "flex" }}>
-                                <img src={imageListingCoins[index].url} alt="" className="imageCoinInLists" /> {element.name} <span className="symbolOfName">{element.symbol}</span>
-                              </td>
-                              <td className="px-6 py-4 boldListingCrypto" style={{ color: listingsPriceColors[index] }}>
-                                {formatter.format(element.quote.USD.price)}
+
+
+                              <Link to={`/page/${element.id}`} style={{ color: "rgb(34, 37, 49)" }}>
+                                <td className="px-6 py-4 boldListingCrypto" style={{ display: "flex", marginTop: "16px" }}>
+                                  <img src={element.image} alt="" className="imageCoinInLists" /> {element.name.length < 10 ? element.name : `${element.name.substring(0, 10)}...`} <span className="symbolOfName">{element.symbol.toUpperCase()}</span>
+                                </td>
+                              </Link>
+
+
+
+                              <td className="px-6 py-4 boldListingCrypto" style={{ color: listingsPriceColors[index] }} >
+                                {formatter.format(element.current_price)}
                               </td>
                               <td className="px-6 py-4 boldListingCrypto" style={{ color: listingsPercentChange1HColors[index] }}>
-                                <i style={{ color: listingsPercentChange1HColors[index] }} className={listingsPercentChange1HIcon[index]}></i>{`${element.quote.USD.percent_change_1h.toFixed(2)}%`}
+                                <p className="percentage">{`${element.market_cap_change_percentage_24h}%`}</p>
+                                <i style={{ color: listingsPercentChange1HColors[index] }} className={listingsPercentChange1HIcon[index]}></i>{`${element.price_change_24h || element.price_change_24h !== null ? formatter.format(element.price_change_24h) : 0}`}
                               </td>
-                              <td className="px-6 py-4 boldListingCrypto" style={{ color: listingsPercentChange24HColors[index] }}>
-                                <i style={{ color: listingsPercentChange24HColors[index] }} className={listingsPercentChange24HIcon[index]}></i>{`${element.quote.USD.percent_change_24h.toFixed(2)}%`}
+                              <td className="px-6 py-4 boldListingCrypto">
+                                {formatter.format(element.high_24h)}
+                              </td>
+                              <td className="px-6 py-4 boldListingCrypto" style={{ color: listingsPercentChange24HColors[index] }} >
+                                <p className="percentage">{`${element.market_cap_change_percentage_24h}%`}</p>
+                                <i style={{ color: listingsPercentChange24HColors[index] }} className={listingsPercentChange24HIcon[index]}></i>{`$${Intl.NumberFormat('en-US', {
+                                  minimumFractionDigits: 0,
+                                  maximumFractionDigits: 0,
+                                }).format(element.market_cap_change_24h)}`}
                               </td>
                               <td className="px-6 py-4 boldListingCrypto" style={{ color: listingsPercentChange7DColors[index] }}>
-                                <i style={{ color: listingsPercentChange7DColors[index] }} className={listingsPercentChange7DIcon[index]}></i>{`${element.quote.USD.percent_change_7d.toFixed(2)}%`}
+                                <p style={{ color: element.atl_change_percentage > 0 ? "#52CCCE" : "#5416B4" }} className="percentage">{parseFloat(element.atl_change_percentage).toFixed(0).length < 10 ? `${parseFloat(element.atl_change_percentage).toFixed(0)}%` : "GI...%"}</p>
+                                <i style={{ color: listingsPercentChange7DColors[index] }} className={listingsPercentChange7DIcon[index]}></i>{formatter.format(element.atl)}
                               </td>
                               <td className="px-6 py-4 boldListingCrypto">
-                                {formatter.format(element.quote.USD.market_cap)}
+                                {formatter.format(element.market_cap.toFixed(0))}
                               </td>
                               <td className="px-6 py-4 boldListingCrypto">
-                                {formatter.format(element.quote.USD.volume_24h)}
+                                {`${Intl.NumberFormat('en-US', {
+                                  minimumFractionDigits: 0,
+                                  maximumFractionDigits: 0,
+                                }).format(element.circulating_supply).substring(0, 13)} ${element.symbol.toUpperCase()}`}
                               </td>
                               <td className="px-6 py-4 boldListingCrypto">
-                                {`${Intl.NumberFormat('en-US', { maximumSignificantDigits: 14 }).format(element.circulating_supply)} ${element.symbol}`}
-                              </td>
-                              <td className="px-6 py-4 boldListingCrypto">
-                                19,292,012 BTC
+                                <LineChartTradingView sparkline={element.sparkline_in_7d.price} />
                               </td>
                             </tr>
                           )) : ""}
@@ -367,14 +374,14 @@ let App = (props) => {
                 </section>
                 {/* End block */}
                 {/* <div className="box">
-                  <div>
-                    <span><img src alt="" /></span>
-                    <span >hello </span>
-                    <span />
-                    <span />
-                    <span />
-                  </div>
-                </div> */}
+          <div>
+            <span><img src alt="" /></span>
+            <span >hello </span>
+            <span />
+            <span />
+            <span />
+          </div>
+        </div> */}
                 {/* Start block */}
                 <section data-hydration-on-demand="true" style={{ display: "flex" }} className="max-w-screen-xl px-4 py-8 mx-auto space-y-12 lg:space-y-20 lg:py-24 lg:px-6">
                   <div className="sc-aef7b723-0 cuJRNG" style={{ display: "flex", marginTop: "80px" }}>
@@ -409,6 +416,10 @@ let App = (props) => {
           </Routes >
         </div >
       </Router >
+
+      }
+
+
     </div >
 
 

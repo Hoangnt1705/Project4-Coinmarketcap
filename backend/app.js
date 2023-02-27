@@ -39,7 +39,7 @@ app.use(cors());
 //     axios.get('https://pro-api.coinmarketcap.com/v1/global-metrics/quotes/latest', {
 //         headers: {
 //             'X-CMC_PRO_API_KEY': API_KEY,
-//         },
+//         },   
 //     })
 //         .then(response => {
 //             setInterval(() => {
@@ -128,11 +128,11 @@ io.on('connection', (socket) => {
                     })
                     .catch(err => console.log(err));
                 console.log("aaaa");
-            }, 30000000);
+            }, 300000000);
         }
     }
     sendRequest();
-    setInterval(sendRequest, 30000000);
+    setInterval(sendRequest, 300000000);
 
 });
 
