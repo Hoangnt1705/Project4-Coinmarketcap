@@ -169,7 +169,7 @@ let App = () => {
   }
   return (
     <div>
-      {isLoading ? <CircleLoader /> : <Router>
+      {isLoading ? <CircleLoader style={{textAlign: "center"}} /> : <Router>
         <div>
           <header className="fixed w-full">
             <Header1 dataLatest={dataLatest} formatter={formatter} auth={auth}

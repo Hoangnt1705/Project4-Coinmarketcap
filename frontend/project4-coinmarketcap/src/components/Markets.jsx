@@ -5,7 +5,7 @@ function Markets() {
 
     return (
         <>
-        
+        <coingecko-coin-heatmap-widget  height="400" locale="en"></coingecko-coin-heatmap-widget>
         </>
     )
 }
