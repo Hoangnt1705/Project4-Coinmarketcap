@@ -7,7 +7,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 
 
 let Header1 = (props) => {
-  let { dataLatest, auth, formatter, currentUser, signOut } = props;
+  let { dataLatest, auth, formatter, currentUser, signOut, cryptocurrencyListings } = props;
   let logOut = () => {
     signOut(auth)
       .then(() => {
@@ -477,7 +477,10 @@ let Header1 = (props) => {
                     <NavDropdown.Item href="#action/3.1">
                       <div className='dropdownTblBlock'>
                         <img src="https://s2.coinmarketcap.com/static/cloud/img/menu/feed.svg" className='dropdownTblBlockImg' />
-                        <p className='dropdownTblText'>Feeds</p>
+                        <Link to="/community"  currentUser={currentUser} cryptocurrencyListings={cryptocurrencyListings} >
+                          <p className='dropdownTblText'>Feeds</p>
+                          {console.log(cryptocurrencyListings)}
+                        </Link>
                       </div>
 
                     </NavDropdown.Item>

@@ -25,6 +25,8 @@ import LoginPage from './components/LoginPage';
 import Register from './components/Register';
 import BuyAPI from './components/BuyAPI';
 import Footer from './components/Footer';
+import Community from './components/Community';
+
 let App = (props) => {
   const firebaseConfig = {
     apiKey: "AIzaSyAwZ9eCKfJStYiWM_RVDjKSFmhKuBW7330",
@@ -186,12 +188,13 @@ let App = (props) => {
               signInWithEmailAndPassword={signInWithEmailAndPassword}
               collection={collection} addDoc={addDoc} db={db} doc={doc} setDoc={setDoc} updateDoc={updateDoc} getDoc={getDoc}
               serverTimestamp={serverTimestamp} arrayUnion={arrayUnion} arrayRemove={arrayRemove} currentUser={currentUser}
-              signOut={signOut}
+              signOut={signOut} cryptocurrencyListings={cryptocurrencyListings} 
             />
           </header>
           {/* Run block */}
           <Routes>
             <Route path="/buy-api" element={<BuyAPI />} />
+            <Route path="/community" element={<Community cryptocurrencyListings={cryptocurrencyListings} />} />
             <Route path='/page' element={<Page />} >
               <Route path="overview" element={<Overview cryptocurrencyListings={cryptocurrencyListings} />} />
               <Route path='markets' element={<Markets />} />
