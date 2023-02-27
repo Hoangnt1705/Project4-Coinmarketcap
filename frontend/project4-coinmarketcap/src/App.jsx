@@ -6,6 +6,7 @@ import { Button } from 'react-bootstrap';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import Socket from './components/Socket';
 import SlideTbl from './components/SlideTbl';
+import SlideTbl2 from './components/slideTbl2';
 import PostComponent from './components/PostComponent';
 import { BrowserRouter as Router, Routes, Route, Link, Outlet } from "react-router-dom";
 import { initializeApp } from "firebase/app";
@@ -218,7 +219,7 @@ let App = () => {
                     {showSlide ?
                       <div className='slideContainer'>
                         <SlideTbl />
-                        <SlideTbl />
+                        <SlideTbl2 />
                         <PostComponent cryptocurrencyListings={cryptocurrencyListings} currentUser={currentUser} />
                       </div> : null
                     }
