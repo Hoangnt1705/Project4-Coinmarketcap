@@ -5612,6 +5612,76 @@ input:checked+.slider:before {
   height: 150px;
 }
 
+.avatar {
+  height: 30px;
+  width: 30px;
+  border-radius: 100%;
+}
+.userPostLeft{
+  display: flex;
+}
+.user-name{
+  margin: 5px 0px 0px 5px;
+  font-weight: 600;
+  font-size: 16px;
+}
+.datePost{
+  margin: 5px 0px 0px 5px;
+  color: #808a9d;
+}
+.userPostTop{
+  display: flex;
+  justify-content: space-between;
+}
+.follow{
+  background-color: #5521b5;
+  color: white;
+  height: fit-content;
+  width: fit-content;
+  padding: 5px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 1px solid #5521b5;
+}
+.follow:hover{
+  background-color: #6f45bd;
+  border: 1px solid #6f45bd;
+}
+.postDetails{
+  font-size: 14px;
+}
+.postFooter{
+  display: flex;
+  justify-content: space-between;
+}
+.fa-comment{
+  color: #808a9d;
+  cursor: pointer;
+}
+.fa-comment:hover{
+  color: #5521b5;
+}
+.fa-heart{
+  color: #808a9d;
+  cursor: pointer;
+}
+.fa-heart:hover{
+  color: red;
+}
+.numberCmt{
+  color: #808a9d;
+}
+.numberLike{
+  color: #808a9d;
+}
+.community{
+  display: flex;
+  justify-content: space-between
+}
+.listPost{
+  width: 40vw !important;
+  margin-left: 60px
+}
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
